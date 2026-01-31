@@ -4,15 +4,16 @@
 # ==================================================
 
 ############################
-# Stage 1 — Composer Dependencies
+# Stage 1 — Vendor Build
 ############################
 FROM composer:2 AS vendor
 
 WORKDIR /app
 
-# Copy only dependency manifests for cache efficiency
-COPY composer.json composer.lock ./
+# Copy full application so artisan exists
+COPY . .
 
+# Install PHP dependencies (Laravel scripts allowed)
 RUN composer install \
     --no-dev \
     --prefer-dist \
@@ -21,7 +22,7 @@ RUN composer install \
     --optimize-autoloader
 
 ############################
-# Stage 2 — Runtime (php-fpm)
+# Stage 2 — Runtime Image
 ############################
 FROM php:8.2-fpm-alpine
 
@@ -50,14 +51,9 @@ COPY docker/nightforge/php.ini /usr/local/etc/php/conf.d/app.ini
 WORKDIR /var/www/html
 
 # --------------------------------------------------
-# Copy application source
+# Copy application + vendor deps
 # --------------------------------------------------
-COPY . .
-
-# --------------------------------------------------
-# Copy vendor dependencies from build stage
-# --------------------------------------------------
-COPY --from=vendor /app/vendor ./vendor
+COPY --from=vendor /app ./
 
 # --------------------------------------------------
 # Laravel build-time optimizations
@@ -77,9 +73,6 @@ RUN chown -R www-data:www-data \
 
 # --------------------------------------------------
 # Runtime contract
-# - HTTP handled by Nightforge ingress
-# - TLS handled upstream
-# - Env injected at runtime
 # --------------------------------------------------
 EXPOSE 9000
 CMD ["php-fpm"]

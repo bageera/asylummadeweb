@@ -2,7 +2,7 @@ SHELL := /bin/bash
 .DEFAULT_GOAL := help
 
 # ============================================================
-# Asylummade.com — Nightforge Site Image
+# Asylummade — Nightforge Image + Local Dev
 # ============================================================
 
 REGISTRY ?= ghcr.io
@@ -25,21 +25,27 @@ PLATFORMS   := linux/amd64,linux/arm64
 # ============================================================
 .PHONY: help
 help:
-	@echo "asylummade.com — Nightforge Site Image"
+	@echo "asylummade — Nightforge + Local Dev"
 	@echo ""
-	@echo "Targets:"
-	@echo "  build      Build image locally"
-	@echo "  push       Build & push multi-arch image"
-	@echo "  publish    Alias for push"
-	@echo "  inspect    Inspect built image metadata"
-	@echo "  clean      Remove local images"
+	@echo "Nightforge:"
+	@echo "  build        Build Nightforge image locally"
+	@echo "  push         Build & push multi-arch image"
+	@echo "  publish      Alias for push"
+	@echo ""
+	@echo "Local Dev:"
+	@echo "  up           Start local dev environment"
+	@echo "  down         Stop local dev environment"
+	@echo "  logs         Tail app logs"
+	@echo "  shell        Shell into app container"
+	@echo "  artisan      Run artisan command (cmd=...)"
+	@echo "  composer     Run composer command (cmd=...)"
 
 # ============================================================
-# Build (local, single-arch)
+# Nightforge Build
 # ============================================================
 .PHONY: build
 build:
-	@echo "→ Building Nightforge image (local)"
+	@echo "→ Building Nightforge image"
 	docker build \
 		-f $(DOCKERFILE) \
 		-t $(TAG_SHA) \
@@ -52,12 +58,9 @@ build:
 		.
 	@echo "✓ Built $(TAG_LATEST)"
 
-# ============================================================
-# Push (Nightforge / CI)
-# ============================================================
 .PHONY: push
 push:
-	@echo "→ Building & pushing multi-arch Nightforge image"
+	@echo "→ Building & pushing Nightforge image"
 	docker buildx build \
 		--platform $(PLATFORMS) \
 		-f $(DOCKERFILE) \
@@ -71,24 +74,31 @@ push:
 		--push \
 		.
 
-# ============================================================
-# Publish (alias)
-# ============================================================
 .PHONY: publish
 publish: push
 
 # ============================================================
-# Inspect
+# Local Development (docker-compose)
 # ============================================================
-.PHONY: inspect
-inspect:
-	docker image inspect $(TAG_LATEST) | jq '.[0].Config.Labels'
+.PHONY: up down logs shell artisan composer
 
-# ============================================================
-# Clean
-# ============================================================
-.PHONY: clean
-clean:
-	@echo "→ Removing local images"
-	@docker rmi -f $(TAG_SHA) $(TAG_DATE) $(TAG_LATEST) 2>/dev/null || true
-	@echo "✓ Done"
+up:
+	@echo "→ Starting local dev environment"
+	docker compose up -d --build
+	@echo "✓ App available at http://localhost:9000"
+
+down:
+	@echo "→ Stopping local dev environment"
+	docker compose down
+
+logs:
+	docker compose logs -f app
+
+shell:
+	docker compose exec app sh
+
+artisan:
+	docker compose exec app php artisan $(cmd)
+
+composer:
+	docker compose exec app composer $(cmd)
