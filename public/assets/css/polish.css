@@ -251,3 +251,20 @@
     background-color: #e9ebef;
   }
   
+  /* ----------------------------
+   Schedule & results tables
+   ---------------------------- */
+.table th {
+  font-weight: 500;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.table td {
+  font-size: 0.9rem;
+}
+
+.badge {
+  font-weight: 500;
+  border-radius: 999px;
+}
