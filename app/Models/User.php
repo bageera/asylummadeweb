@@ -6,6 +6,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class User extends Authenticatable
 {
@@ -21,6 +23,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
+        'phone',
+        'emergency_contact',
+        'emergency_phone',
     ];
 
     /**
@@ -44,5 +50,48 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    // ============================================================
+    // Relationships
+    // ============================================================
+
+    public function teams(): HasMany
+    {
+        return $this->hasMany(Team::class, 'owner_id');
+    }
+
+    public function driver(): BelongsTo
+    {
+        return $this->belongsTo(Driver::class, 'user_id');
+    }
+
+    // ============================================================
+    // Role Helpers
+    // ============================================================
+
+    public function isAdmin(): bool
+    {
+        return $this->role === 'admin';
+    }
+
+    public function isOfficial(): bool
+    {
+        return in_array($this->role, ['admin', 'official']);
+    }
+
+    public function isTeamManager(): bool
+    {
+        return in_array($this->role, ['admin', 'team_manager']);
+    }
+
+    public function isDriver(): bool
+    {
+        return in_array($this->role, ['admin', 'driver']);
+    }
+
+    public function canManageTeam(Team $team): bool
+    {
+        return $this->isAdmin() || $team->owner_id === $this->id;
     }
 }

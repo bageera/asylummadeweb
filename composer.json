@@ -17,7 +17,10 @@
         "laravel/sail": "^1.41",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.6",
-        "phpunit/phpunit": "^11.5.3"
+        "phpstan/phpstan": "^1.10",
+        "phpunit/phpunit": "^11.5.3",
+        "psalm/plugin-laravel": "^2.0",
+        "vimeo/psalm": "^5.0"
     },
     "autoload": {
         "psr-4": {
@@ -47,6 +50,17 @@
         "test": [
             "@php artisan config:clear --ansi",
             "@php artisan test"
+        ],
+        "lint": [
+            "vendor/bin/pint --test",
+            "vendor/bin/phpstan analyse --memory-limit=512M"
+        ],
+        "lint:fix": [
+            "vendor/bin/pint"
+        ],
+        "security": [
+            "composer audit --no-dev",
+            "vendor/bin/psalm --config=psalm.xml"
         ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",

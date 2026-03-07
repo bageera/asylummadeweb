@@ -22,3 +22,17 @@
 Homestead.json
 Homestead.yaml
 Thumbs.db
+
+# Security scan outputs
+trivy-results.sarif
+results.sarif
+*.sarif
+
+# Psalm cache
+.psalm-cache/
+
+# PHPStan cache
+.phpstan/
+
+# Pint cache
+.pint.cache
