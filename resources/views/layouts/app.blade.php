@@ -17,8 +17,8 @@
   <meta name="ICBM" content="27.8661, -82.3265">
 
   {{-- Theme colors --}}
-  <meta name="theme-color" content="#D45500">
-  <meta name="msapplication-TileColor" content="#1E3A5F">
+  <meta name="theme-color" content="#000000">
+  <meta name="msapplication-TileColor" content="#7FFF00">
 
   {{-- Favicon --}}
   <link rel="icon" type="image/svg+xml" href="/assets/images/icons/favicon.svg">

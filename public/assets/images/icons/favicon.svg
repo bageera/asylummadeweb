@@ -1,24 +1,37 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
-  <!-- Circular track background -->
-  <circle cx="32" cy="32" r="30" fill="#1E3A5F"/>
+  <defs>
+    <filter id="neonGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Black background circle -->
+  <circle cx="32" cy="32" r="30" fill="#000"/>
+  
+  <!-- Outer glow ring -->
+  <circle cx="32" cy="32" r="28" fill="none" stroke="#7FFF00" stroke-width="2" filter="url(#neonGlow)"/>
   
   <!-- Track lanes -->
-  <circle cx="32" cy="32" r="28" fill="none" stroke="#C8553D" stroke-width="8"/>
-  <circle cx="32" cy="32" r="22" fill="none" stroke="white" stroke-width="1" opacity="0.5"/>
-  <circle cx="32" cy="32" r="18" fill="none" stroke="white" stroke-width="1" opacity="0.5"/>
-  <circle cx="32" cy="32" r="14" fill="none" stroke="white" stroke-width="1" opacity="0.5"/>
+  <circle cx="32" cy="32" r="24" fill="none" stroke="#8A2BE2" stroke-width="1" opacity="0.5"/>
+  <circle cx="32" cy="32" r="20" fill="none" stroke="#7FFF00" stroke-width="1" opacity="0.3"/>
+  <circle cx="32" cy="32" r="16" fill="none" stroke="#8A2BE2" stroke-width="1" opacity="0.2"/>
   
-  <!-- Infield -->
-  <circle cx="32" cy="32" r="10" fill="#228B22"/>
+  <!-- Inner field -->
+  <circle cx="32" cy="32" r="12" fill="#111"/>
   
-  <!-- Running figure -->
-  <g transform="translate(26, 20)">
-    <circle cx="6" cy="0" r="5" fill="#D45500"/>
-    <path d="M6 5 L6 18 M6 10 L0 14 M6 10 L12 14 M6 18 L3 28 M6 18 L9 28" stroke="#D45500" stroke-width="2.5" fill="none"/>
+  <!-- Lightning bolt runner -->
+  <g transform="translate(22, 16)" filter="url(#neonGlow)">
+    <polygon points="4,0 12,0 8,8 16,8 0,24 6,12 0,12" fill="#7FFF00"/>
+    <!-- Secondary bolt -->
+    <polygon points="12,4 16,4 14,8 18,8 8,18 10,10 6,10" fill="#8A2BE2" opacity="0.8"/>
   </g>
   
-  <!-- Lane numbers -->
-  <text x="56" y="30" font-family="system-ui, sans-serif" font-size="6" fill="white" font-weight="600">1</text>
-  <text x="52" y="42" font-family="system-ui, sans-serif" font-size="6" fill="white" font-weight="600">2</text>
-  <text x="12" y="42" font-family="system-ui, sans-serif" font-size="6" fill="white" font-weight="600">3</text>
+  <!-- Speed lines -->
+  <line x1="8" y1="28" x2="4" y2="28" stroke="#7FFF00" stroke-width="1.5" opacity="0.6"/>
+  <line x1="10" y1="35" x2="6" y2="35" stroke="#8A2BE2" stroke-width="1" opacity="0.5"/>
+  <line x1="8" y1="42" x2="4" y2="42" stroke="#7FFF00" stroke-width="1" opacity="0.4"/>
 </svg>
