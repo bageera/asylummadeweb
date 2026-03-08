@@ -1,96 +1,47 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900">
   <defs>
-    <linearGradient id="sunsetSky" x1="0%" y1="0%" x2="0%" y2="100%">
+    <linearGradient id="heroGrad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" style="stop-color:#1E3A5F"/>
-      <stop offset="30%" style="stop-color:#D45500"/>
-      <stop offset="60%" style="stop-color:#F59E0B"/>
-      <stop offset="100%" style="stop-color:#FFFBF5"/>
-    </linearGradient>
-    <linearGradient id="trackGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" style="stop-color:#B84700"/>
-      <stop offset="100%" style="stop-color:#8B3500"/>
-    </linearGradient>
-    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#D45500"/>
+      <stop offset="50%" style="stop-color:#D45500"/>
       <stop offset="100%" style="stop-color:#F59E0B"/>
     </linearGradient>
-    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-      <feMerge>
-        <feMergeNode in="coloredBlur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+    </pattern>
   </defs>
   
-  <!-- Sky background -->
-  <rect width="1600" height="900" fill="url(#sunsetSky)"/>
+  <!-- Background -->
+  <rect width="1600" height="900" fill="url(#heroGrad)"/>
+  <rect width="1600" height="900" fill="url(#grid)"/>
   
-  <!-- Sun -->
-  <circle cx="1300" cy="200" r="80" fill="#FFFBF5" opacity="0.9" filter="url(#glow)"/>
-  <circle cx="1300" cy="200" r="60" fill="#F59E0B" opacity="0.6"/>
+  <!-- Placeholder frame -->
+  <rect x="100" y="100" width="1400" height="700" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="2" rx="8"/>
+  <rect x="100" y="100" width="1400" height="700" fill="rgba(0,0,0,0.2)" rx="8"/>
   
-  <!-- Stadium lights silhouette -->
-  <g fill="#1E3A5F" opacity="0.3">
-    <rect x="100" y="300" width="8" height="200"/>
-    <rect x="80" y="280" width="48" height="24"/>
-    <rect x="400" y="250" width="8" height="250"/>
-    <rect x="380" y="230" width="48" height="24"/>
-    <rect x="1200" y="280" width="8" height="220"/>
-    <rect x="1180" y="260" width="48" height="24"/>
-    <rect x="1500" y="300" width="8" height="200"/>
-    <rect x="1480" y="280" width="48" height="24"/>
+  <!-- Image icon -->
+  <g transform="translate(800, 380)">
+    <rect x="-60" y="-40" width="120" height="80" fill="none" stroke="white" stroke-width="3" rx="4"/>
+    <circle cx="-30" cy="-15" r="15" fill="none" stroke="white" stroke-width="2"/>
+    <path d="M -50 30 L -20 5 L 10 25 L 30 10 L 50 30" fill="none" stroke="white" stroke-width="2"/>
+    <circle cx="0" cy="0" r="80" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="2" stroke-dasharray="10,5"/>
   </g>
   
-  <!-- Track oval background -->
-  <ellipse cx="800" cy="700" rx="700" ry="180" fill="url(#trackGrad)"/>
+  <!-- Instructions -->
+  <text x="800" y="500" text-anchor="middle" font-family="system-ui, sans-serif" font-size="32" font-weight="700" fill="white">REPLACE WITH STOCK PHOTO</text>
+  <text x="800" y="540" text-anchor="middle" font-family="system-ui, sans-serif" font-size="18" fill="rgba(255,255,255,0.8)">Recommended: 1600×900px (16:9 aspect ratio)</text>
   
-  <!-- Track lanes -->
-  <ellipse cx="800" cy="700" rx="650" ry="160" fill="none" stroke="white" stroke-width="2" opacity="0.4"/>
-  <ellipse cx="800" cy="700" rx="600" ry="140" fill="none" stroke="white" stroke-width="2" opacity="0.3"/>
-  <ellipse cx="800" cy="700" rx="550" ry="120" fill="none" stroke="white" stroke-width="2" opacity="0.2"/>
+  <!-- Photo prompts -->
+  <rect x="200" y="580" width="1200" height="180" fill="rgba(0,0,0,0.4)" rx="8"/>
   
-  <!-- Infield grass -->
-  <ellipse cx="800" cy="700" rx="480" ry="100" fill="#1B5E20"/>
+  <text x="800" y="620" text-anchor="middle" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#F59E0B">SUGGESTED UNSPLASH SEARCH:</text>
   
-  <!-- Starting blocks area (bottom) -->
-  <rect x="0" y="750" width="200" height="150" fill="url(#trackGrad)"/>
-  <line x1="0" y1="780" x2="200" y2="780" stroke="white" stroke-width="2" opacity="0.5"/>
-  <line x1="0" y1="810" x2="200" y2="810" stroke="white" stroke-width="2" opacity="0.5"/>
-  <line x1="0" y1="840" x2="200" y2="840" stroke="white" stroke-width="2" opacity="0.5"/>
+  <text x="800" y="660" text-anchor="middle" font-family="monospace" font-size="14" fill="white">"youth track and field athlete starting blocks golden hour"</text>
+  <text x="800" y="685" text-anchor="middle" font-family="monospace" font-size="14" fill="white">"sprinter starting position sunset florida"</text>
+  <text x="800" y="710" text-anchor="middle" font-family="monospace" font-size="14" fill="white">"track athlete explosive start dramatic lighting"</text>
   
-  <!-- Athlete silhouette in starting position -->
-  <g transform="translate(100, 800)" fill="#1E3A5F" opacity="0.8">
-    <ellipse cx="0" cy="0" rx="20" ry="8" fill="#1E3A5F" opacity="0.3"/>
-    <!-- Body crouched -->
-    <circle cx="40" cy="-30" r="12"/>
-    <ellipse cx="30" cy="-10" rx="25" ry="15" transform="rotate(-30, 30, -10)"/>
-    <!-- Arms -->
-    <rect x="10" y="-20" width="35" height="6" rx="3" transform="rotate(-45, 27, -17)"/>
-    <rect x="45" y="-25" width="30" height="6" rx="3" transform="rotate(15, 60, -22)"/>
-    <!-- Legs -->
-    <rect x="15" y="5" width="40" height="8" rx="4" transform="rotate(-20, 35, 9)"/>
-    <rect x="35" y="0" width="35" height="8" rx="4" transform="rotate(30, 52, 4)"/>
-    <!-- Spikes motion lines -->
-    <line x1="-15" y1="-10" x2="-5" y2="-10" stroke="#D45500" stroke-width="2" opacity="0.6"/>
-    <line x1="-20" y1="0" x2="-8" y2="0" stroke="#D45500" stroke-width="2" opacity="0.5"/>
-    <line x1="-18" y1="10" x2="-6" y2="10" stroke="#D45500" stroke-width="2" opacity="0.4"/>
-  </g>
+  <text x="800" y="750" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="rgba(255,255,255,0.6)">Download from: unsplash.com → Save as: track-sunset.jpg or track-sunset.png</text>
   
-  <!-- Text overlay -->
-  <rect x="0" y="0" width="1600" height="900" fill="url(#sunsetSky)" opacity="0.3"/>
-  
-  <!-- Hero text area -->
-  <g transform="translate(100, 350)">
-    <text x="0" y="0" font-family="system-ui, -apple-system, sans-serif" font-size="72" font-weight="700" fill="#FFFBF5" filter="url(#glow)">TRACK &amp; FIELD</text>
-    <text x="0" y="60" font-family="system-ui, -apple-system, sans-serif" font-size="32" fill="#F59E0B">Riverview, Florida</text>
-    <rect x="0" y="80" width="200" height="4" fill="url(#accentGrad)" rx="2"/>
-  </g>
-  
-  <!-- Photo placeholder indicator -->
-  <g transform="translate(1400, 850)">
-    <rect x="-80" y="-30" width="160" height="40" fill="#1E3A5F" rx="4" opacity="0.8"/>
-    <text x="0" y="-5" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#F59E0B">📷 Hero Photo</text>
-    <text x="0" y="10" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="rgba(255,255,255,0.6)">1600×900</text>
-  </g>
+  <!-- Branding overlay -->
+  <rect x="0" y="850" width="1600" height="50" fill="rgba(0,0,0,0.5)"/>
+  <text x="800" y="880" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="rgba(255,255,255,0.7)">Asylum Made Track &amp; Field — Hero Image Placeholder</text>
 </svg>
