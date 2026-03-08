@@ -17,9 +17,13 @@ use Illuminate\Support\Facades\Route;
 Route::view('/', 'pages.home')->name('home');
 Route::view('/rules', 'pages.rules')->name('rules');
 Route::view('/services', 'pages.services')->name('operations');
-Route::view('/registration', 'pages.registration')->name('registration');
 Route::view('/about', 'pages.about')->name('about');
 Route::view('/contact', 'pages.contact')->name('contact');
+
+// Registration (dynamic form)
+Route::get('/registration', [\App\Http\Controllers\Public\RegistrationController::class, 'create'])->name('registration');
+Route::post('/registration', [\App\Http\Controllers\Public\RegistrationController::class, 'store'])->name('registration.store');
+Route::get('/registration/confirmation/{id}', [\App\Http\Controllers\Public\RegistrationController::class, 'confirmation'])->name('registration.confirmation');
 
 // --------------------------------------------------
 // Legal / informational
