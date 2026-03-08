@@ -23,7 +23,7 @@ Route::get('/schedule', [ScheduleController::class, 'index'])->name('schedule');
 Route::get('/schedule/{season}', [ScheduleController::class, 'season'])->name('schedule.season');
 
 // Events
-Route::get('/event/{event}', [EventController::class, 'show'])->name('event.show');
+Route::get('/events/{event}', [EventController::class, 'show'])->name('events.show');
 
 // Results
 Route::get('/results', [ResultsController::class, 'index'])->name('results');
@@ -38,8 +38,8 @@ Route::get('/standings/{season}/{class}', [StandingsController::class, 'class'])
 
 // Teams
 Route::get('/teams', [PublicTeamController::class, 'index'])->name('teams');
-Route::get('/teams/{team}', [PublicTeamController::class, 'show'])->name('team.show');
+Route::get('/teams/{team}', [PublicTeamController::class, 'show'])->name('teams.show');
 
 // Drivers
 Route::get('/drivers', [PublicDriverController::class, 'index'])->name('drivers');
-Route::get('/drivers/{driver}', [PublicDriverController::class, 'show'])->name('driver.show');
+Route::get('/drivers/{driver}', [PublicDriverController::class, 'show'])->name('drivers.show');
