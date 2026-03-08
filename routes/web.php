@@ -38,12 +38,15 @@ require __DIR__ . '/legacy.php';
 require __DIR__ . '/public.php';
 
 // --------------------------------------------------
-// Authentication routes (Laravel Breeze/Fortify style)
+// Authentication routes
 // --------------------------------------------------
 Route::middleware('guest')->group(function () {
-    Route::view('login', 'auth.login')->name('login');
-    Route::view('register', 'auth.register')->name('register');
-    Route::view('forgot-password', 'auth.forgot-password')->name('password.request');
+    Route::get('login', [\App\Http\Controllers\Auth\AuthenticatedSessionController::class, 'create'])->name('login');
+    Route::post('login', [\App\Http\Controllers\Auth\AuthenticatedSessionController::class, 'store']);
+    Route::get('register', [\App\Http\Controllers\Auth\RegisteredUserController::class, 'create'])->name('register');
+    Route::post('register', [\App\Http\Controllers\Auth\RegisteredUserController::class, 'store']);
+    Route::get('forgot-password', [\App\Http\Controllers\Auth\PasswordResetLinkController::class, 'create'])->name('password.request');
+    Route::post('forgot-password', [\App\Http\Controllers\Auth\PasswordResetLinkController::class, 'store'])->name('password.email');
 });
 
 Route::middleware('auth')->group(function () {
