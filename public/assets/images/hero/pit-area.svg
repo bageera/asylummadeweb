@@ -1,86 +1,85 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
   <defs>
-    <linearGradient id="pitsBg" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" style="stop-color:#FFF8F0"/>
-      <stop offset="100%" style="stop-color:#FEF7ED"/>
+    <linearGradient id="morning" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" style="stop-color:#FFE4B5;stop-opacity:0.5"/>
+      <stop offset="100%" style="stop-color:#87CEEB;stop-opacity:0"/>
     </linearGradient>
-    <linearGradient id="sunrise" x1="0%" y1="100%" x2="0%" y2="0%">
-      <stop offset="0%" style="stop-color:#F59E0B;stop-opacity:0.3"/>
-      <stop offset="100%" style="stop-color:#FF7020;stop-opacity:0"/>
+    <linearGradient id="trackSurface" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#C8553D"/>
+      <stop offset="100%" style="stop-color:#9E3A28"/>
+    </linearGradient>
+    <linearGradient id="grassField" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#228B22"/>
+      <stop offset="100%" style="stop-color:#1B5E20"/>
     </linearGradient>
   </defs>
   
   <!-- Background -->
-  <rect width="800" height="600" fill="url(#pitsBg)"/>
-  
-  <!-- Sunrise glow -->
-  <rect width="800" height="300" fill="url(#sunrise)"/>
+  <rect width="800" height="600" fill="#E8F5E9"/>
+  <rect width="800" height="300" fill="url(#morning)"/>
   
   <!-- Racing stripe top -->
   <rect x="0" y="0" width="800" height="4" fill="#D45500"/>
   <rect x="0" y="4" width="800" height="2" fill="#F59E0B"/>
   
-  <!-- Pit row background -->
-  <rect x="0" y="350" width="800" height="250" fill="#2A2A2A"/>
-  <rect x="0" y="350" width="800" height="8" fill="#D45500"/>
+  <!-- Field area -->
+  <rect x="0" y="400" width="800" height="200" fill="url(#grassField)"/>
   
-  <!-- Pit stalls -->
-  <g>
-    <!-- Stall 1 -->
-    <rect x="50" y="400" width="120" height="150" fill="#3A3A3A" stroke="#4A4A4A" stroke-width="2"/>
-    <rect x="55" y="405" width="110" height="50" fill="#D45500" opacity="0.2"/>
-    <circle cx="110" cy="490" r="20" fill="#1A1814" stroke="#4A4A4A" stroke-width="2"/>
-    <text x="110" y="495" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#D45500">7</text>
-    
-    <!-- Stall 2 -->
-    <rect x="200" y="400" width="120" height="150" fill="#3A3A3A" stroke="#4A4A4A" stroke-width="2"/>
-    <rect x="205" y="405" width="110" height="50" fill="#1E3A5F" opacity="0.2"/>
-    <circle cx="260" cy="490" r="20" fill="#1A1814" stroke="#4A4A4A" stroke-width="2"/>
-    <text x="260" y="495" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#1E3A5F">21</text>
-    
-    <!-- Stall 3 -->
-    <rect x="350" y="400" width="120" height="150" fill="#3A3A3A" stroke="#4A4A4A" stroke-width="2"/>
-    <rect x="355" y="405" width="110" height="50" fill="#E11D48" opacity="0.2"/>
-    <circle cx="410" cy="490" r="20" fill="#1A1814" stroke="#4A4A4A" stroke-width="2"/>
-    <text x="410" y="495" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#E11D48">88</text>
-    
-    <!-- Stall 4 -->
-    <rect x="500" y="400" width="120" height="150" fill="#3A3A3A" stroke="#4A4A4A" stroke-width="2"/>
-    <rect x="505" y="405" width="110" height="50" fill="#059669" opacity="0.2"/>
-    <circle cx="560" cy="490" r="20" fill="#1A1814" stroke="#4A4A4A" stroke-width="2"/>
-    <text x="560" y="495" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#059669">14</text>
-    
-    <!-- Stall 5 -->
-    <rect x="650" y="400" width="120" height="150" fill="#3A3A3A" stroke="#4A4A4A" stroke-width="2"/>
-    <rect x="655" y="405" width="110" height="50" fill="#F59E0B" opacity="0.2"/>
-    <circle cx="710" cy="490" r="20" fill="#1A1814" stroke="#4A4A4A" stroke-width="2"/>
-    <text x="710" y="495" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#F59E0B">3</text>
+  <!-- Track lanes -->
+  <rect x="0" y="350" width="800" height="50" fill="url(#trackSurface)"/>
+  <line x1="0" y1="360" x2="800" y2="360" stroke="white" stroke-width="1" opacity="0.5"/>
+  <line x1="0" y1="370" x2="800" y2="370" stroke="white" stroke-width="1" opacity="0.5"/>
+  <line x1="0" y1="380" x2="800" y2="380" stroke="white" stroke-width="1" opacity="0.5"/>
+  <line x1="0" y1="390" x2="800" y2="390" stroke="white" stroke-width="1" opacity="0.5"/>
+  
+  <!-- Long jump pit -->
+  <rect x="100" y="450" width="150" height="30" fill="#E8D4A8"/>
+  <rect x="100" y="480" width="150" height="80" fill="#D4C4A0"/>
+  <text x="175" y="470" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#1E3A5F">LONG JUMP</text>
+  
+  <!-- Shot put circle -->
+  <circle cx="400" cy="500" r="35" fill="url(#trackSurface)" stroke="white" stroke-width="2"/>
+  <text x="400" y="550" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#1E3A5F">SHOT PUT</text>
+  
+  <!-- High jump area -->
+  <rect x="550" y="420" width="80" height="80" fill="url(#grassField)" stroke="white" stroke-width="1"/>
+  <!-- Standards -->
+  <rect x="600" y="420" width="5" height="60" fill="#1E3A5F"/>
+  <rect x="625" y="420" width="5" height="60" fill="#1E3A5F"/>
+  <!-- Bar -->
+  <line x1="600" y1="430" x2="630" y2="430" stroke="#D45500" stroke-width="3"/>
+  <text x="600" y="520" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#1E3A5F">HIGH JUMP</text>
+  
+  <!-- Athletes warming up -->
+  <g transform="translate(50, 420)">
+    <!-- Athlete stretching -->
+    <circle cx="15" cy="0" r="10" fill="#D45500"/>
+    <path d="M15 10 L15 35 M15 20 L5 30 M15 20 L25 30 M15 35 L10 55 M15 35 L20 55" stroke="#D45500" stroke-width="3" fill="none"/>
   </g>
   
-  <!-- People silhouettes -->
-  <circle cx="80" cy="370" r="8" fill="#6B635A"/>
-  <circle cx="130" cy="375" r="8" fill="#6B635A"/>
-  <circle cx="230" cy="370" r="8" fill="#6B635A"/>
-  <circle cx="280" cy="372" r="8" fill="#6B635A"/>
-  <circle cx="380" cy="368" r="8" fill="#6B635A"/>
-  <circle cx="430" cy="374" r="8" fill="#6B635A"/>
+  <g transform="translate(250, 430)">
+    <!-- Athlete with baton -->
+    <circle cx="15" cy="0" r="10" fill="#1E3A5F"/>
+    <path d="M15 10 L15 35 M15 20 L5 30 M15 20 L25 30 M15 35 L10 55 M15 35 L20 55" stroke="#1E3A5F" stroke-width="3" fill="none"/>
+    <rect x="25" y="25" width="20" height="5" fill="#F59E0B" rx="2"/>
+  </g>
+  
+  <g transform="translate(450, 440)">
+    <!-- Athlete throwing -->
+    <circle cx="15" cy="0" r="10" fill="#059669"/>
+    <path d="M15 10 L15 35 M15 20 L0 25 M15 20 L30 15 M15 35 L10 55 M15 35 L20 55" stroke="#059669" stroke-width="3" fill="none"/>
+  </g>
+  
+  <!-- Equipment shed -->
+  <rect x="700" y="450" width="80" height="50" fill="#4A4A4A" stroke="#3A3A3A" stroke-width="2"/>
+  <text x="740" y="510" text-anchor="middle" font-family="system-ui, sans-serif" font-size="8" fill="#6B635A">EQUIPMENT</text>
   
   <!-- Text area -->
-  <rect x="50" y="80" width="350" height="120" rx="8" fill="#FFFBF5" opacity="0.95"/>
-  <text x="70" y="120" font-family="system-ui, sans-serif" font-size="28" font-weight="700" fill="#1E3A5F">PIT AREA</text>
-  <text x="70" y="145" font-family="system-ui, sans-serif" font-size="14" fill="#6B635A">Teams prepare for race day.</text>
-  <text x="70" y="165" font-family="system-ui, sans-serif" font-size="12" fill="#D45500">5 pit stalls • Equipment storage • Team staging</text>
-  
-  <!-- Racing flag corner -->
-  <g transform="translate(700, 20)">
-    <rect x="0" y="0" width="4" height="60" fill="#1A1814"/>
-    <g transform="translate(4, 0)">
-      <rect x="0" y="0" width="10" height="10" fill="#1A1814"/>
-      <rect x="10" y="10" width="10" height="10" fill="#1A1814"/>
-      <rect x="0" y="20" width="10" height="10" fill="#1A1814"/>
-      <rect x="20" y="0" width="10" height="10" fill="#1A1814"/>
-      <rect x="30" y="10" width="10" height="10" fill="#1A1814"/>
-      <rect x="20" y="20" width="10" height="10" fill="#1A1814"/>
-    </g>
-  </g>
+  <rect x="50" y="80" width="300" height="140" rx="10" fill="#FFFBF5" opacity="0.95"/>
+  <text x="70" y="115" font-family="system-ui, sans-serif" font-size="24" font-weight="700" fill="#1E3A5F">FIELD EVENTS</text>
+  <text x="70" y="140" font-family="system-ui, sans-serif" font-size="14" fill="#6B635A">Track &amp; Field Facilities</text>
+  <text x="70" y="165" font-family="system-ui, sans-serif" font-size="12" fill="#D45500">Long Jump • Triple Jump</text>
+  <text x="70" y="180" font-family="system-ui, sans-serif" font-size="12" fill="#D45500">High Jump • Pole Vault</text>
+  <text x="70" y="195" font-family="system-ui, sans-serif" font-size="12" fill="#D45500">Shot Put • Discus • Javelin</text>
+  <text x="70" y="215" font-family="system-ui, sans-serif" font-size="11" fill="#6B635A">Full facility for all events</text>
 </svg>

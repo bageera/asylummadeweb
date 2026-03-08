@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
 
-  <title>@yield('title', 'Asylum Made Track — Riverview, Florida')</title>
+  <title>@yield('title', 'Asylum Made Track & Field — Riverview, Florida')</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
 

@@ -3,8 +3,7 @@
 
     {{-- Brand --}}
     <a class="navbar-brand d-flex align-items-center" href="/">
-      <img src="/assets/images/icons/logo.svg" alt="Asylum Made Track" height="36" class="me-2">
-      <span class="fw-bold" style="color: var(--secondary);">asylummadespan class="text-primary">track</span></span>
+      <img src="/assets/images/icons/logo.svg" alt="Asylum Made Track & Field" height="36" class="me-2">
     </a>
 
     {{-- Mobile toggle --}}
@@ -37,11 +36,7 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="/rules">Rules</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="/teams">Teams</a>
+          <a class="nav-link" href="/events">Events</a>
         </li>
 
         <li class="nav-item">

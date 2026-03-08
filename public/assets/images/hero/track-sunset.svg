@@ -1,66 +1,74 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
   <defs>
     <linearGradient id="sky" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" style="stop-color:#FF7020;stop-opacity:0.8"/>
-      <stop offset="50%" style="stop-color:#F59E0B;stop-opacity:0.6"/>
-      <stop offset="100%" style="stop-color:#FEF7ED;stop-opacity:1"/>
+      <stop offset="0%" style="stop-color:#87CEEB"/>
+      <stop offset="50%" style="stop-color:#B0E0E6"/>
+      <stop offset="100%" style="stop-color:#F0F8FF"/>
     </linearGradient>
     <linearGradient id="track" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" style="stop-color:#4A4A4A"/>
-      <stop offset="100%" style="stop-color:#2A2A2A"/>
+      <stop offset="0%" style="stop-color:#C8553D"/>
+      <stop offset="100%" style="stop-color:#9E3A28"/>
     </linearGradient>
-    <pattern id="checker" width="20" height="20" patternUnits="userSpaceOnUse">
-      <rect width="10" height="10" fill="#1A1814"/>
-      <rect x="10" width="10" height="10" fill="#FFFBF5"/>
-      <rect y="10" width="10" height="10" fill="#FFFBF5"/>
-      <rect x="10" y="10" width="10" height="10" fill="#1A1814"/>
-    </pattern>
+    <linearGradient id="grass" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#228B22"/>
+      <stop offset="100%" style="stop-color:#1B5E20"/>
+    </linearGradient>
   </defs>
   
   <!-- Sky gradient -->
   <rect width="800" height="600" fill="url(#sky)"/>
   
-  <!-- Sun glow -->
-  <circle cx="650" cy="120" r="80" fill="#FFB347" opacity="0.5"/>
-  <circle cx="650" cy="120" r="60" fill="#FFD700" opacity="0.7"/>
+  <!-- Clouds -->
+  <ellipse cx="100" cy="80" rx="60" ry="30" fill="white" opacity="0.8"/>
+  <ellipse cx="150" cy="70" rx="50" ry="25" fill="white" opacity="0.8"/>
+  <ellipse cx="600" cy="100" rx="70" ry="35" fill="white" opacity="0.8"/>
+  <ellipse cx="680" cy="90" rx="50" ry="25" fill="white" opacity="0.8"/>
+  
+  <!-- Stadium background -->
+  <rect x="0" y="350" width="800" height="250" fill="url(#grass)"/>
   
   <!-- Track oval -->
-  <ellipse cx="400" cy="400" rx="350" ry="150" fill="url(#track)" stroke="#E8DFD4" stroke-width="4"/>
+  <ellipse cx="400" cy="450" rx="320" ry="120" fill="url(#track)" stroke="white" stroke-width="4"/>
   
-  <!-- Inner track line -->
-  <ellipse cx="400" cy="400" rx="300" ry="120" fill="none" stroke="#FFFBF5" stroke-width="2" opacity="0.3"/>
+  <!-- Track lanes -->
+  <ellipse cx="400" cy="450" rx="280" ry="100" fill="none" stroke="white" stroke-width="2" opacity="0.6"/>
+  <ellipse cx="400" cy="450" rx="240" ry="80" fill="none" stroke="white" stroke-width="2" opacity="0.6"/>
+  <ellipse cx="400" cy="450" rx="200" ry="60" fill="none" stroke="white" stroke-width="2" opacity="0.6"/>
   
-  <!-- Start/finish line -->
-  <rect x="48" y="385" width="4" height="30" fill="url(#checker)"/>
+  <!-- Infield grass -->
+  <ellipse cx="400" cy="450" rx="160" ry="40" fill="url(#grass)"/>
   
-  <!-- Racing cars silhouettes -->
-  <g transform="translate(150, 350)">
-    <rect x="0" y="0" width="80" height="25" rx="5" fill="#D45500"/>
-    <circle cx="15" cy="28" r="10" fill="#1A1814"/>
-    <circle cx="65" cy="28" r="10" fill="#1A1814"/>
+  <!-- Sprint lanes on left -->
+  <rect x="50" y="350" width="100" height="200" fill="url(#track)" stroke="white" stroke-width="2"/>
+  <line x1="70" y1="350" x2="70" y2="550" stroke="white" stroke-width="1" opacity="0.5"/>
+  <line x1="90" y1="350" x2="90" y2="550" stroke="white" stroke-width="1" opacity="0.5"/>
+  <line x1="110" y1="350" x2="110" y2="550" stroke="white" stroke-width="1" opacity="0.5"/>
+  <line x1="130" y1="350" x2="130" y2="550" stroke="white" stroke-width="1" opacity="0.5"/>
+  
+  <!-- Athletes silhouettes -->
+  <g transform="translate(80, 420)">
+    <!-- Sprinter -->
+    <circle cx="10" cy="0" r="8" fill="#1E3A5F"/>
+    <path d="M10 8 L10 25 M10 15 L0 20 M10 15 L20 20 M10 25 L5 40 M10 25 L15 40" stroke="#1E3A5F" stroke-width="3" fill="none"/>
   </g>
   
-  <g transform="translate(350, 380)">
-    <rect x="0" y="0" width="80" height="25" rx="5" fill="#1E3A5F"/>
-    <circle cx="15" cy="28" r="10" fill="#1A1814"/>
-    <circle cx="65" cy="28" r="10" fill="#1A1814"/>
+  <g transform="translate(280, 430)">
+    <!-- Runner on track -->
+    <circle cx="10" cy="0" r="8" fill="#D45500"/>
+    <path d="M10 8 L10 25 M10 15 L0 20 M10 15 L20 20 M10 25 L5 40 M10 25 L15 40" stroke="#D45500" stroke-width="3" fill="none"/>
   </g>
   
-  <g transform="translate(550, 370)">
-    <rect x="0" y="0" width="80" height="25" rx="5" fill="#E11D48"/>
-    <circle cx="15" cy="28" r="10" fill="#1A1814"/>
-    <circle cx="65" cy="28" r="10" fill="#1A1814"/>
+  <g transform="translate(500, 420)">
+    <!-- Another athlete -->
+    <circle cx="10" cy="0" r="8" fill="#059669"/>
+    <path d="M10 8 L10 25 M10 15 L0 20 M10 15 L20 20 M10 25 L5 40 M10 25 L15 40" stroke="#059669" stroke-width="3" fill="none"/>
   </g>
   
-  <!-- Flag stand -->
-  <rect x="720" y="200" width="10" height="120" fill="#1A1814"/>
-  <rect x="730" y="200" width="60" height="40" fill="url(#checker)"/>
+  <!-- High jump area -->
+  <rect x="650" y="380" width="80" height="60" fill="url(#grass)" stroke="white" stroke-width="1"/>
+  <line x1="650" y1="400" x2="730" y2="400" stroke="white" stroke-width="1"/>
   
-  <!-- Grandstand silhouette -->
-  <path d="M0 500 L0 600 L200 600 L200 520 L100 480 L50 500 L0 500" fill="#1E3A5F" opacity="0.7"/>
-  
-  <!-- Text overlay area -->
-  <rect x="0" y="500" width="800" height="100" fill="#FFFBF5" opacity="0.9"/>
-  <text x="400" y="555" text-anchor="middle" font-family="system-ui, sans-serif" font-size="24" font-weight="700" fill="#1E3A5F">ASYLUM MADE TRACK</text>
-  <text x="400" y="580" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="#6B635A">Riverview, Florida • Local Track League</text>
+  <!-- Finish line text -->
+  <rect x="0" y="550" width="800" height="50" fill="#FFFBF5" opacity="0.95"/>
+  <text x="400" y="582" text-anchor="middle" font-family="system-ui, sans-serif" font-size="28" font-weight="700" fill="#1E3A5F">ASYLUM MADE TRACK &amp; FIELD</text>
 </svg>

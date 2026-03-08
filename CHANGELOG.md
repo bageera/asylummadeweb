@@ -34,8 +34,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 #### Seeders
 - `AdminUserSeeder` — Creates default admin user
 - `SeasonSeeder` — Creates 2026 season
-- `VehicleClassSeeder` — Creates 8 race classes (Street Stock, Pure Stock, Modified, etc.)
-- `DemoDataSeeder` — Creates sample events with classes
+- `VehicleClassSeeder` — Creates 18 track & field events (sprints, distance, hurdles, jumps, throws, relays)
+- `DemoDataSeeder` — Creates sample meets with events
 
 #### CI/CD Pipeline
 - **`.github/workflows/ci.yml`** — Main CI pipeline

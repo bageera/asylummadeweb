@@ -21,53 +21,73 @@ class DemoDataSeeder extends Seeder
             return;
         }
 
-        $streetStock = VehicleClass::where('slug', 'street-stock')->first();
-        $pureStock = VehicleClass::where('slug', 'pure-stock')->first();
-        $modified = VehicleClass::where('slug', 'modified')->first();
-        $miniStock = VehicleClass::where('slug', 'mini-stock')->first();
+        // Get track & field events
+        $sprint100 = VehicleClass::where('slug', '100m-sprint')->first();
+        $sprint200 = VehicleClass::where('slug', '200m-sprint')->first();
+        $sprint400 = VehicleClass::where('slug', '400m-sprint')->first();
+        $distance800 = VehicleClass::where('slug', '800m-run')->first();
+        $distance1600 = VehicleClass::where('slug', '1600m-run')->first();
+        $longJump = VehicleClass::where('slug', 'long-jump')->first();
+        $highJump = VehicleClass::where('slug', 'high-jump')->first();
+        $shotPut = VehicleClass::where('slug', 'shot-put')->first();
+        $discus = VehicleClass::where('slug', 'discus')->first();
+        $relay4x100 = VehicleClass::where('slug', '4x100m-relay')->first();
 
         $events = [
             [
-                'name' => 'Season Opener',
+                'name' => 'Season Opener Meet',
                 'event_date' => '2026-03-14',
-                'gates_open_time' => '16:00:00',
-                'practice_start_time' => '17:00:00',
-                'racing_start_time' => '19:00:00',
-                'admission_general' => 15.00,
-                'admission_pit' => 25.00,
-                'admission_kids' => 5.00,
+                'gates_open_time' => '08:00:00',
+                'practice_start_time' => '09:00:00',
+                'racing_start_time' => '10:00:00',
+                'admission_general' => 5.00,
+                'admission_pit' => null,
+                'admission_kids' => 0.00,
                 'status' => 'registration_open',
-                'classes' => [$streetStock?->id, $pureStock?->id, $miniStock?->id, $modified?->id],
+                'special_notes' => 'Opening meet of the 2026 season. All age divisions welcome.',
+                'events' => [$sprint100?->id, $sprint200?->id, $sprint400?->id, $longJump?->id, $shotPut?->id],
             ],
             [
-                'name' => 'Spring Showdown',
-                'event_date' => '2026-03-21',
-                'gates_open_time' => '16:00:00',
-                'practice_start_time' => '17:00:00',
-                'racing_start_time' => '19:00:00',
-                'admission_general' => 15.00,
-                'admission_pit' => 25.00,
-                'admission_kids' => 5.00,
+                'name' => 'Spring Sprint Classic',
+                'event_date' => '2026-03-28',
+                'gates_open_time' => '08:00:00',
+                'practice_start_time' => '09:00:00',
+                'racing_start_time' => '10:00:00',
+                'admission_general' => 5.00,
+                'admission_kids' => 0.00,
                 'status' => 'scheduled',
-                'classes' => [$streetStock?->id, $pureStock?->id, $miniStock?->id],
+                'special_notes' => 'Focus on sprint events with field competitions.',
+                'events' => [$sprint100?->id, $sprint200?->id, $sprint400?->id, $longJump?->id, $highJump?->id],
             ],
             [
-                'name' => 'April Fools Race Night',
-                'event_date' => '2026-04-04',
-                'gates_open_time' => '16:00:00',
-                'practice_start_time' => '17:00:00',
-                'racing_start_time' => '19:00:00',
-                'admission_general' => 15.00,
-                'admission_pit' => 25.00,
-                'admission_kids' => 5.00,
+                'name' => 'Distance & Throws Meet',
+                'event_date' => '2026-04-11',
+                'gates_open_time' => '08:00:00',
+                'practice_start_time' => '09:00:00',
+                'racing_start_time' => '10:00:00',
+                'admission_general' => 5.00,
+                'admission_kids' => 0.00,
                 'status' => 'scheduled',
-                'classes' => [$streetStock?->id, $pureStock?->id, $miniStock?->id, $modified?->id],
+                'special_notes' => 'Mid-distance and throwing events featured.',
+                'events' => [$distance800?->id, $distance1600?->id, $shotPut?->id, $discus?->id],
+            ],
+            [
+                'name' => 'All-Around Championship',
+                'event_date' => '2026-04-25',
+                'gates_open_time' => '08:00:00',
+                'practice_start_time' => '09:00:00',
+                'racing_start_time' => '10:00:00',
+                'admission_general' => 7.00,
+                'admission_kids' => 0.00,
+                'status' => 'scheduled',
+                'special_notes' => 'Full event schedule — sprints, distance, jumps, throws.',
+                'events' => [$sprint100?->id, $sprint200?->id, $sprint400?->id, $distance800?->id, $longJump?->id, $shotPut?->id, $relay4x100?->id],
             ],
         ];
 
         foreach ($events as $eventData) {
-            $classes = $eventData['classes'] ?? [];
-            unset($eventData['classes']);
+            $eventIds = $eventData['events'] ?? [];
+            unset($eventData['events']);
 
             $event = Event::updateOrCreate(
                 [
@@ -77,18 +97,16 @@ class DemoDataSeeder extends Seeder
                 array_merge($eventData, ['season_id' => $season->id])
             );
 
-            // Attach classes with pivot data
-            foreach (array_filter($classes) as $index => $classId) {
+            // Attach events to meet
+            foreach (array_filter($eventIds) as $index => $eventId) {
                 $event->vehicleClasses()->syncWithoutDetaching([
-                    $classId => [
-                        'laps' => 20,
-                        'entry_fee' => 35.00,
+                    $eventId => [
                         'sort_order' => $index + 1,
                     ],
                 ]);
             }
         }
 
-        $this->command->info('Demo events seeded: ' . count($events));
+        $this->command->info('Demo meets seeded: ' . count($events));
     }
 }

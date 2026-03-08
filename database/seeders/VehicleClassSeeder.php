@@ -13,68 +13,141 @@ class VehicleClassSeeder extends Seeder
     public function run(): void
     {
         $classes = [
+            // Track Events - Sprints
             [
-                'name' => 'Street Stock',
-                'slug' => 'street-stock',
-                'description' => 'Street-legal appearing stock cars with limited modifications.',
-                'min_weight_lbs' => 3200,
+                'name' => '100m Sprint',
+                'slug' => '100m-sprint',
+                'description' => 'Pure sprint event — fastest athlete wins.',
                 'sort_order' => 1,
                 'is_active' => true,
             ],
             [
-                'name' => 'Pure Stock',
-                'slug' => 'pure-stock',
-                'description' => 'Minimum modification stock class for entry-level competitors.',
-                'min_weight_lbs' => 3400,
+                'name' => '200m Sprint',
+                'slug' => '200m-sprint',
+                'description' => 'Half-lap sprint combining speed and curve running.',
                 'sort_order' => 2,
                 'is_active' => true,
             ],
             [
-                'name' => 'Super Stock',
-                'slug' => 'super-stock',
-                'description' => 'High-performance stock cars with enhanced engine modifications.',
-                'min_weight_lbs' => 2800,
+                'name' => '400m Sprint',
+                'slug' => '400m-sprint',
+                'description' => 'One full lap — speed endurance event.',
                 'sort_order' => 3,
                 'is_active' => true,
             ],
+            
+            // Track Events - Distance
             [
-                'name' => 'Modified',
-                'slug' => 'modified',
-                'description' => 'Open-wheel modified racing cars with significant modifications allowed.',
-                'min_weight_lbs' => 2500,
+                'name' => '800m Run',
+                'slug' => '800m-run',
+                'description' => 'Two laps — middle distance event.',
                 'sort_order' => 4,
                 'is_active' => true,
             ],
             [
-                'name' => 'Crate Late Model',
-                'slug' => 'crate-late-model',
-                'description' => 'Late model cars using sealed crate engines for cost control.',
-                'min_weight_lbs' => 2300,
+                'name' => '1600m Run',
+                'slug' => '1600m-run',
+                'description' => 'One mile — distance endurance event.',
                 'sort_order' => 5,
                 'is_active' => true,
             ],
             [
-                'name' => 'Super Late Model',
-                'slug' => 'super-late-model',
-                'description' => 'Top-tier late model class with unlimited engine builds.',
-                'min_weight_lbs' => 2300,
+                'name' => '3200m Run',
+                'slug' => '3200m-run',
+                'description' => 'Two miles — long distance event.',
                 'sort_order' => 6,
                 'is_active' => true,
             ],
+            
+            // Track Events - Hurdles
             [
-                'name' => 'Mini Stock',
-                'slug' => 'mini-stock',
-                'description' => 'Four-cylinder compact cars with limited modifications.',
-                'min_weight_lbs' => 2300,
+                'name' => '100m Hurdles',
+                'slug' => '100m-hurdles',
+                'description' => 'Women\'s hurdle event — technique + speed.',
                 'sort_order' => 7,
                 'is_active' => true,
             ],
             [
-                'name' => 'Hornet',
-                'slug' => 'hornet',
-                'description' => 'Entry-level four-cylinder class for beginners.',
-                'min_weight_lbs' => 2400,
+                'name' => '110m Hurdles',
+                'slug' => '110m-hurdles',
+                'description' => 'Men\'s hurdle event — technique + speed.',
                 'sort_order' => 8,
+                'is_active' => true,
+            ],
+            [
+                'name' => '300m Hurdles',
+                'slug' => '300m-hurdles',
+                'description' => 'Intermediate hurdles — 3/4 lap.',
+                'sort_order' => 9,
+                'is_active' => true,
+            ],
+            
+            // Field Events - Jumps
+            [
+                'name' => 'Long Jump',
+                'slug' => 'long-jump',
+                'description' => 'Running long jump — distance measured from board.',
+                'sort_order' => 10,
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Triple Jump',
+                'slug' => 'triple-jump',
+                'description' => 'Hop, step, jump — combination event.',
+                'sort_order' => 11,
+                'is_active' => true,
+            ],
+            [
+                'name' => 'High Jump',
+                'slug' => 'high-jump',
+                'description' => 'Fosbury flop technique — bar height.',
+                'sort_order' => 12,
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Pole Vault',
+                'slug' => 'pole-vault',
+                'description' => 'Bar clearance with pole — height event.',
+                'sort_order' => 13,
+                'is_active' => true,
+            ],
+            
+            // Field Events - Throws
+            [
+                'name' => 'Shot Put',
+                'slug' => 'shot-put',
+                'description' => 'Heavy ball thrown from circle — distance.',
+                'sort_order' => 14,
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Discus',
+                'slug' => 'discus',
+                'description' => 'Disc thrown from circle — distance.',
+                'sort_order' => 15,
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Javelin',
+                'slug' => 'javelin',
+                'description' => 'Spear thrown from runway — distance.',
+                'sort_order' => 16,
+                'is_active' => true,
+            ],
+            
+            // Relays
+            [
+                'name' => '4x100m Relay',
+                'slug' => '4x100m-relay',
+                'description' => 'Four athletes, one lap total with baton.',
+                'sort_order' => 17,
+                'is_active' => true,
+            ],
+            [
+                'name' => '4x400m Relay',
+                'slug' => '4x400m-relay',
+                'description' => 'Four athletes, four laps total with baton.',
+                'sort_order' => 18,
                 'is_active' => true,
             ],
         ];
@@ -86,6 +159,6 @@ class VehicleClassSeeder extends Seeder
             );
         }
 
-        $this->command->info('Vehicle classes seeded: ' . count($classes));
+        $this->command->info('Track & Field events seeded: ' . count($classes));
     }
 }
