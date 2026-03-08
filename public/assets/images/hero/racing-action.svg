@@ -1,97 +1,93 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900">
   <defs>
-    <linearGradient id="darkBg2" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#0a0a0a"/>
-      <stop offset="100%" style="stop-color:#111111"/>
+    <linearGradient id="actionBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f8f9fa"/>
+      <stop offset="100%" style="stop-color:#e8eaef"/>
     </linearGradient>
-    <linearGradient id="neonGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#7FFF00"/>
-      <stop offset="100%" style="stop-color:#8A2BE2"/>
+    <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#4b2e83"/>
+      <stop offset="100%" style="stop-color:#6b3ea3"/>
     </linearGradient>
-    <filter id="glow2">
-      <feGaussianBlur stdDeviation="3" result="blur"/>
-      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
+    <linearGradient id="greenGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#5b7f2b"/>
+      <stop offset="100%" style="stop-color:#7b9f3b"/>
+    </linearGradient>
   </defs>
   
   <!-- Background -->
-  <rect width="1600" height="900" fill="url(#darkBg2)"/>
+  <rect width="1600" height="900" fill="url(#actionBg)"/>
   
-  <!-- Neon stripe top -->
-  <rect x="0" y="0" width="1600" height="4" fill="url(#neonGrad2)" filter="url(#glow2)"/>
+  <!-- Top accent line -->
+  <rect x="0" y="0" width="1600" height="4" fill="url(#purpleGrad)"/>
   
   <!-- Track surface -->
-  <rect x="0" y="350" width="1600" height="300" fill="#1a1a1a"/>
+  <rect x="0" y="350" width="1600" height="300" fill="#f4f6f8"/>
   
-  <!-- Lane lines with neon glow -->
-  <line x1="0" y1="380" x2="1600" y2="380" stroke="#7FFF00" stroke-width="2" opacity="0.4" filter="url(#glow2)"/>
-  <line x1="0" y1="420" x2="1600" y2="420" stroke="#8A2BE2" stroke-width="1.5" opacity="0.3"/>
-  <line x1="0" y1="460" x2="1600" y2="460" stroke="#7FFF00" stroke-width="1" opacity="0.2"/>
-  <line x1="0" y1="500" x2="1600" y2="500" stroke="#8A2BE2" stroke-width="1" opacity="0.15"/>
-  <line x1="0" y1="540" x2="1600" y2="540" stroke="#7FFF00" stroke-width="1" opacity="0.1"/>
+  <!-- Lane lines -->
+  <line x1="0" y1="380" x2="1600" y2="380" stroke="#4b2e83" stroke-width="2" opacity="0.2"/>
+  <line x1="0" y1="420" x2="1600" y2="420" stroke="#5b7f2b" stroke-width="1.5" opacity="0.15"/>
+  <line x1="0" y1="460" x2="1600" y2="460" stroke="#4b2e83" stroke-width="1" opacity="0.1"/>
+  <line x1="0" y1="500" x2="1600" y2="500" stroke="#5b7f2b" stroke-width="1" opacity="0.08"/>
+  <line x1="0" y1="540" x2="1600" y2="540" stroke="#4b2e83" stroke-width="1" opacity="0.06"/>
   
   <!-- Starting blocks -->
-  <g fill="#7FFF00" opacity="0.3">
-    <rect x="60" y="370" width="20" height="50"/>
-    <rect x="60" y="420" width="20" height="50"/>
-    <rect x="60" y="470" width="20" height="50"/>
-    <rect x="60" y="520" width="20" height="50"/>
+  <g fill="#4b2e83" opacity="0.15">
+    <rect x="60" y="370" width="20" height="50" rx="2"/>
+    <rect x="60" y="420" width="20" height="50" rx="2"/>
+    <rect x="60" y="470" width="20" height="50" rx="2"/>
+    <rect x="60" y="520" width="20" height="50" rx="2"/>
   </g>
   
-  <!-- Athletes with neon glow -->
-  <!-- Sprinter 1 - Neon Green -->
-  <g transform="translate(280, 400)" filter="url(#glow2)">
-    <circle cx="0" cy="-15" r="14" fill="#7FFF00"/>
-    <ellipse cx="5" cy="20" rx="18" ry="28" fill="#7FFF00"/>
-    <path d="M-20 35 L-5 50 M20 30 L35 20 M-5 55 L-15 75 M15 55 L25 75" stroke="#7FFF00" stroke-width="5" fill="none"/>
-    <!-- Speed lines -->
-    <line x1="-40" y1="0" x2="-15" y2="0" stroke="#7FFF00" stroke-width="3" opacity="0.6"/>
-    <line x1="-50" y1="15" x2="-20" y2="15" stroke="#7FFF00" stroke-width="2" opacity="0.4"/>
-    <line x1="-45" y1="30" x2="-18" y2="30" stroke="#7FFF00" stroke-width="2" opacity="0.2"/>
+  <!-- Athletes -->
+  <g transform="translate(280, 400)">
+    <circle cx="0" cy="-15" r="14" fill="#4b2e83"/>
+    <ellipse cx="5" cy="20" rx="18" ry="28" fill="#4b2e83"/>
+    <path d="M-20 35 L-5 50 M20 30 L35 20 M-5 55 L-15 75 M15 55 L25 75" stroke="#4b2e83" stroke-width="5" fill="none"/>
+    <line x1="-40" y1="0" x2="-15" y2="0" stroke="#5b7f2b" stroke-width="3" opacity="0.5"/>
+    <line x1="-50" y1="15" x2="-20" y2="15" stroke="#5b7f2b" stroke-width="2" opacity="0.3"/>
   </g>
   
-  <!-- Sprinter 2 - Electric Purple -->
-  <g transform="translate(550, 450)" filter="url(#glow2)">
-    <circle cx="0" cy="-15" r="14" fill="#8A2BE2"/>
-    <ellipse cx="5" cy="20" rx="18" ry="28" fill="#8A2BE2"/>
-    <path d="M-18 35 L-8 52 M18 28 L30 18 M-5 55 L-12 78 M15 55 L22 75" stroke="#8A2BE2" stroke-width="5" fill="none"/>
-    <!-- Speed lines -->
-    <line x1="-40" y1="0" x2="-15" y2="0" stroke="#8A2BE2" stroke-width="3" opacity="0.6"/>
-    <line x1="-50" y1="15" x2="-20" y2="15" stroke="#8A2BE2" stroke-width="2" opacity="0.4"/>
+  <g transform="translate(550, 450)">
+    <circle cx="0" cy="-15" r="14" fill="#5b7f2b"/>
+    <ellipse cx="5" cy="20" rx="18" ry="28" fill="#5b7f2b"/>
+    <path d="M-18 35 L-8 52 M18 28 L30 18 M-5 55 L-12 78 M15 55 L22 75" stroke="#5b7f2b" stroke-width="5" fill="none"/>
+    <line x1="-40" y1="0" x2="-15" y2="0" stroke="#4b2e83" stroke-width="3" opacity="0.5"/>
+    <line x1="-50" y1="15" x2="-20" y2="15" stroke="#4b2e83" stroke-width="2" opacity="0.3"/>
   </g>
   
-  <!-- Sprinter 3 - Neon Green -->
-  <g transform="translate(820, 420)" filter="url(#glow2)">
-    <circle cx="0" cy="-15" r="14" fill="#7FFF00"/>
-    <ellipse cx="5" cy="20" rx="18" ry="28" fill="#7FFF00"/>
-    <path d="M-22 32 L-10 48 M22 32 L38 18 M-8 55 L-18 75 M12 55 L28 72" stroke="#7FFF00" stroke-width="5" fill="none"/>
-    <!-- Speed lines -->
-    <line x1="-40" y1="0" x2="-15" y2="0" stroke="#7FFF00" stroke-width="3" opacity="0.6"/>
-    <line x1="-50" y1="15" x2="-20" y2="15" stroke="#7FFF00" stroke-width="2" opacity="0.4"/>
+  <g transform="translate(820, 420)">
+    <circle cx="0" cy="-15" r="14" fill="#4b2e83"/>
+    <ellipse cx="5" cy="20" rx="18" ry="28" fill="#4b2e83"/>
+    <path d="M-22 32 L-10 48 M22 32 L38 18 M-8 55 L-18 75 M12 55 L28 72" stroke="#4b2e83" stroke-width="5" fill="none"/>
+    <line x1="-40" y1="0" x2="-15" y2="0" stroke="#5b7f2b" stroke-width="3" opacity="0.5"/>
+    <line x1="-50" y1="15" x2="-20" y2="15" stroke="#5b7f2b" stroke-width="2" opacity="0.3"/>
   </g>
   
   <!-- Finish line banner -->
-  <rect x="1300" y="330" width="220" height="70" fill="#111" stroke="#7FFF00" stroke-width="2" rx="4" filter="url(#glow2)"/>
-  <text x="1410" y="375" text-anchor="middle" font-family="system-ui, sans-serif" font-size="28" font-weight="700" fill="#7FFF00">FINISH</text>
+  <rect x="1300" y="330" width="220" height="70" fill="white" rx="4"/>
+  <rect x="1300" y="330" width="220" height="70" fill="none" stroke="#4b2e83" stroke-width="2" rx="4"/>
+  <text x="1410" y="375" text-anchor="middle" font-family="system-ui, sans-serif" font-size="28" font-weight="700" fill="#4b2e83">FINISH</text>
   
   <!-- Timing display -->
-  <rect x="40" y="330" width="140" height="80" fill="#111" stroke="#8A2BE2" stroke-width="2" rx="8" filter="url(#glow2)"/>
-  <text x="110" y="375" text-anchor="middle" font-family="monospace" font-size="36" fill="#7FFF00" filter="url(#glow2)">11.24</text>
-  <text x="110" y="400" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#888888">SECONDS</text>
+  <rect x="40" y="330" width="140" height="80" fill="white" rx="8"/>
+  <rect x="40" y="330" width="140" height="80" fill="none" stroke="#5b7f2b" stroke-width="2" rx="8"/>
+  <text x="110" y="375" text-anchor="middle" font-family="monospace" font-size="36" fill="#4b2e83">11.24</text>
+  <text x="110" y="400" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#6b7280">SECONDS</text>
   
   <!-- Text overlay -->
-  <rect x="0" y="620" width="1600" height="280" fill="#000" opacity="0.9"/>
+  <rect x="0" y="620" width="1600" height="280" fill="white" opacity="0.95"/>
+  <rect x="0" y="618" width="1600" height="2" fill="url(#purpleGrad)"/>
   
   <g transform="translate(80, 680)">
-    <text x="0" y="0" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#FFFFFF">Built for Athletes of All Levels</text>
-    <text x="0" y="50" font-family="system-ui, sans-serif" font-size="18" fill="#888888">Youth (6-18) and Masters (19+) programs • All skill levels welcome</text>
-    <rect x="0" y="70" width="150" height="4" fill="url(#neonGrad2)" rx="2" filter="url(#glow2)"/>
+    <text x="0" y="0" font-family="system-ui, sans-serif" font-size="42" font-weight="700" fill="#1b1f24">Built for Athletes of All Levels</text>
+    <text x="0" y="50" font-family="system-ui, sans-serif" font-size="18" fill="#6b7280">Youth (6-18) and Masters (19+) programs • All skill levels welcome</text>
+    <rect x="0" y="70" width="100" height="4" fill="url(#purpleGrad)" rx="2"/>
   </g>
   
   <!-- Photo placeholder indicator -->
   <g transform="translate(1500, 870)">
-    <rect x="-80" y="-30" width="160" height="40" fill="#1a1a1a" rx="4"/>
-    <text x="0" y="-5" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#8A2BE2">📷 Action Photo</text>
-    <text x="0" y="10" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#666666">1600×900</text>
+    <rect x="-70" y="-25" width="140" height="35" fill="white" rx="4"/>
+    <text x="0" y="-5" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#4b2e83">📷 Action Photo</text>
+    <text x="0" y="10" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#6b7280">1600×900</text>
   </g>
 </svg>

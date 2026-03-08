@@ -1,9 +1,9 @@
-<nav class="navbar navbar-expand-lg sticky-top" style="background-color: var(--surface); border-bottom: 1px solid var(--border-light);">
+<nav class="navbar navbar-expand-lg sticky-top" style="background-color: var(--surface); border-bottom: 1px solid var(--border);">
   <div class="container">
 
     {{-- Brand --}}
     <a class="navbar-brand d-flex align-items-center" href="/">
-      <img src="/assets/images/icons/logo.png" alt="Asylum Made Track & Field" height="48" class="me-2" style="filter: drop-shadow(0 0 10px rgba(127, 255, 0, 0.3));">
+      <img src="/assets/images/icons/logo.png" alt="Asylum Made Track & Field" height="40" class="me-2">
     </a>
 
     {{-- Mobile toggle --}}

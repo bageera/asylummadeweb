@@ -1,85 +1,50 @@
 /* ============================================================
-   asylummade — Polish Layer
-   Purpose: Typography, rhythm, high-contrast electric aesthetic
-   Neon electric palette for track & field
+   asylummadetrack.com — Polish Layer
+   Tone: Residential / Civic / Regal
+   Logo: Primary identity anchor
+   Applies globally to all pages & partials
    ============================================================ */
 
-/* ----------------------------
-   Root variables - Neon Electric Palette
-   ---------------------------- */
+/* ------------------------------------------------------------
+   Root palette
+   ------------------------------------------------------------ */
 :root {
-  /* Primary: Black - Background, depth, sophistication */
-  --primary: #000000;
-  --primary-hover: #1a1a1a;
-  --primary-light: #2a2a2a;
-  --primary-dark: #000000;
-  
-  /* Neon Green: Energy, speed, action */
-  --neon-green: #7FFF00;
-  --neon-green-hover: #66cc00;
-  --neon-green-dark: #5cb800;
-  --neon-green-glow: rgba(127, 255, 0, 0.4);
-  
-  /* Electric Purple: Power, intensity, accents */
-  --electric-purple: #8A2BE2;
-  --electric-purple-hover: #7a1fd0;
-  --electric-purple-light: #9f4ae8;
-  --electric-purple-glow: rgba(138, 43, 226, 0.4);
-  
-  /* Accent: Neon Green (primary action) */
-  --accent: #7FFF00;
-  --accent-hover: #66cc00;
-  --accent-secondary: #8A2BE2;
-  
-  /* Surfaces - Dark with subtle warmth */
-  --surface: #0a0a0a;
-  --surface-soft: #111111;
-  --surface-alt: #1a1a1a;
-  --surface-elevated: #222222;
-  
-  /* Text - White and grays for contrast */
-  --ink: #FFFFFF;
-  --ink-muted: #B0B0B0;
-  --ink-subtle: #808080;
-  --muted: #888888;
-  --muted-light: #666666;
-  
-  /* Borders and dividers */
-  --border: #333333;
-  --border-light: #222222;
-  --border-accent: #444444;
-  
-  /* Status colors - Neon variants */
-  --success: #7FFF00;
-  --success-light: rgba(127, 255, 0, 0.15);
-  --warning: #FFD700;
-  --warning-light: rgba(255, 215, 0, 0.15);
-  --danger: #FF3366;
-  --danger-light: rgba(255, 51, 102, 0.15);
-  --info: #00D4FF;
-  --info-light: rgba(0, 212, 255, 0.15);
-  
-  /* Neon accents for special elements */
-  --neon-green-glow: 0 0 20px rgba(127, 255, 0, 0.5), 0 0 40px rgba(127, 255, 0, 0.2);
-  --neon-purple-glow: 0 0 20px rgba(138, 43, 226, 0.5), 0 0 40px rgba(138, 43, 226, 0.2);
-  
-  /* Shadows - Dark theme */
-  --shadow-soft: 0 6px 24px rgba(0, 0, 0, 0.4);
-  --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.5);
-  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.6);
-  --shadow-neon: 0 0 30px rgba(127, 255, 0, 0.3);
-  
-  /* Border radius */
+  /* Core surfaces */
+  --ink: #1b1f24;
+  --muted: #6b7280;
+  --surface: #ffffff;
+  --surface-soft: #f4f6f8;
+  --border: #e1e5ea;
+
+  /* Regal accents (derived from logo) */
+  --accent-primary: #4b2e83;      /* purple */
+  --accent-secondary: #5b7f2b;    /* green */
+  --accent-primary-light: #6b3ea3;
+  --accent-secondary-light: #7b9f3b;
+
+  /* Anchors */
+  --brand-charcoal: #0f1115;
+  --brand-purple: #4b2e83;
+  --brand-green: #5b7f2b;
+
+  /* Status */
+  --status-success: #2f6b3f;
+  --status-warning: #c9a227;
+  --status-error: #8b2c2c;
+
+  /* Shape & depth */
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: 14px;
   --radius-xl: 20px;
-  --radius-full: 9999px;
+  --shadow-soft: 0 4px 18px rgba(15, 17, 21, 0.06);
+  --shadow-md: 0 8px 30px rgba(15, 17, 21, 0.1);
+  --shadow-lg: 0 12px 40px rgba(15, 17, 21, 0.12);
 }
 
-/* ----------------------------
-   Global base
-   ---------------------------- */
+/* ------------------------------------------------------------
+   Base
+   ------------------------------------------------------------ */
 html {
   scroll-behavior: smooth;
 }
@@ -87,24 +52,23 @@ html {
 body {
   color: var(--ink);
   background-color: var(--surface);
-  font-feature-settings: "kern", "liga";
   -webkit-font-smoothing: antialiased;
 }
 
 a {
-  color: var(--neon-green);
+  color: var(--accent-primary);
   text-decoration: none;
-  transition: color 0.2s ease, text-shadow 0.2s ease;
+  transition: color 0.2s ease;
 }
 
 a:hover {
-  color: var(--neon-green-hover);
-  text-shadow: 0 0 8px var(--neon-green-glow);
+  color: var(--accent-primary-light);
+  text-decoration: underline;
 }
 
-/* ----------------------------
+/* ------------------------------------------------------------
    Typography
-   ---------------------------- */
+   ------------------------------------------------------------ */
 h1, h2, h3, h4, h5, h6 {
   letter-spacing: -0.02em;
   color: var(--ink);
@@ -115,7 +79,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .lead {
-  color: var(--ink-muted);
+  color: var(--muted);
   max-width: 42rem;
 }
 
@@ -125,64 +89,68 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Primary text */
 .text-primary {
-  color: var(--neon-green) !important;
+  color: var(--accent-primary) !important;
 }
 
 .text-secondary {
-  color: var(--electric-purple) !important;
+  color: var(--accent-secondary) !important;
 }
 
-.text-accent {
-  color: var(--neon-green) !important;
-}
-
-/* Neon text effects */
-.text-neon-green {
-  color: var(--neon-green);
-  text-shadow: 0 0 10px var(--neon-green-glow);
-}
-
-.text-neon-purple {
-  color: var(--electric-purple);
-  text-shadow: 0 0 10px var(--electric-purple-glow);
-}
-
-/* ----------------------------
-   Navigation
-   ---------------------------- */
+/* ------------------------------------------------------------
+   Navigation (global)
+   ------------------------------------------------------------ */
 .navbar {
   background-color: var(--surface);
-  border-bottom: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border);
 }
 
 .navbar-brand {
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  color: var(--ink);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
-.navbar-brand:hover {
-  color: var(--neon-green);
+.navbar-brand img {
+  height: 48px;
+  display: block;
 }
 
-.nav-link {
+.navbar-nav .nav-link {
   font-size: 0.95rem;
-  color: var(--ink-muted);
+  color: var(--muted);
+  position: relative;
+  padding-bottom: 0.25rem;
   transition: color 0.2s ease;
 }
 
-.nav-link:hover {
-  color: var(--neon-green);
+.navbar-nav .nav-link:hover {
+  color: var(--ink);
 }
 
-.nav-link.active {
-  color: var(--neon-green);
+.navbar-nav .nav-link.active {
+  color: var(--accent-primary);
   font-weight: 500;
 }
 
-/* ----------------------------
-   Section rhythm
-   ---------------------------- */
+/* Active nav indicator */
+.navbar-nav .nav-link.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 100%;
+  height: 2px;
+  background-color: var(--accent-primary);
+}
+
+/* Primary action button in nav */
+.navbar .btn {
+  border-radius: 999px;
+}
+
+/* ------------------------------------------------------------
+   Sections & page structure
+   ------------------------------------------------------------ */
 section {
   position: relative;
 }
@@ -196,16 +164,12 @@ section + section {
 }
 
 .bg-primary {
-  background-color: var(--primary) !important;
+  background-color: var(--accent-primary) !important;
+  color: white !important;
 }
 
 .bg-secondary {
-  background-color: var(--surface-elevated) !important;
-}
-
-.bg-accent {
-  background-color: var(--neon-green) !important;
-  color: var(--primary) !important;
+  background-color: var(--surface-soft) !important;
 }
 
 .border-top,
@@ -213,41 +177,43 @@ section + section {
   border-color: var(--border) !important;
 }
 
-/* Hero gradient - dark with neon accents */
+/* Hero grounding */
+.hero-band {
+  background-color: #f2f4f7;
+}
+
+/* Hero accent rule */
+.hero-title {
+  position: relative;
+}
+
+.hero-title::after {
+  content: "";
+  display: block;
+  width: 72px;
+  height: 3px;
+  margin-top: 0.75rem;
+  background-color: var(--accent-primary);
+}
+
+/* Hero gradient */
 .hero-gradient {
   background: linear-gradient(135deg, var(--surface) 0%, var(--surface-soft) 100%);
 }
 
-/* Neon stripe accent */
-.racing-stripe {
-  position: relative;
-}
-
-.racing-stripe::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, var(--neon-green) 0%, var(--electric-purple) 100%);
-  box-shadow: var(--neon-green-glow);
-}
-
-/* ----------------------------
-   Cards
-   ---------------------------- */
+/* ------------------------------------------------------------
+   Cards (used across pages)
+   ------------------------------------------------------------ */
 .card {
   border-radius: var(--radius-lg);
   border-color: var(--border);
-  background-color: var(--surface-soft);
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  background-color: var(--surface);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .card:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
-  border-color: var(--border-accent);
 }
 
 .card.shadow-sm {
@@ -263,26 +229,9 @@ section + section {
   margin-bottom: 0.5rem;
 }
 
-.card-featured {
-  border-color: var(--neon-green);
-  border-width: 2px;
-  box-shadow: 0 0 20px var(--neon-green-glow);
-}
-
-.card-featured::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: var(--neon-green);
-  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-}
-
-/* ----------------------------
+/* ------------------------------------------------------------
    Buttons
-   ---------------------------- */
+   ------------------------------------------------------------ */
 .btn {
   border-radius: var(--radius-md);
   padding: 0.55rem 1.25rem;
@@ -291,197 +240,118 @@ section + section {
 }
 
 .btn-primary {
-  background-color: var(--neon-green);
-  border-color: var(--neon-green);
-  color: var(--primary);
+  background-color: var(--accent-primary);
+  border-color: var(--accent-primary);
 }
 
 .btn-primary:hover {
-  background-color: var(--neon-green-hover);
-  border-color: var(--neon-green-hover);
-  box-shadow: var(--shadow-neon);
+  background-color: var(--accent-primary-light);
+  border-color: var(--accent-primary-light);
 }
 
 .btn-secondary {
-  background-color: var(--electric-purple);
-  border-color: var(--electric-purple);
-  color: var(--ink);
+  background-color: var(--accent-secondary);
+  border-color: var(--accent-secondary);
+  color: white;
 }
 
 .btn-secondary:hover {
-  background-color: var(--electric-purple-hover);
-  border-color: var(--electric-purple-hover);
-  box-shadow: 0 0 20px var(--electric-purple-glow);
+  background-color: var(--accent-secondary-light);
+  border-color: var(--accent-secondary-light);
 }
 
 .btn-dark {
-  background-color: var(--surface-elevated);
-  border-color: var(--border);
-  color: var(--ink);
+  background-color: var(--brand-charcoal);
+  border-color: var(--brand-charcoal);
 }
 
 .btn-dark:hover {
-  background-color: var(--primary-light);
-  border-color: var(--border-accent);
+  background-color: var(--accent-primary);
+  border-color: var(--accent-primary);
 }
 
 .btn-outline-primary {
-  color: var(--neon-green);
-  border-color: var(--neon-green);
+  color: var(--accent-primary);
+  border-color: var(--accent-primary);
 }
 
 .btn-outline-primary:hover {
-  background-color: var(--neon-green);
-  color: var(--primary);
-  box-shadow: var(--shadow-neon);
+  background-color: var(--accent-primary);
+  color: white;
 }
 
 .btn-outline-secondary {
-  color: var(--ink-muted);
+  color: var(--muted);
   border-color: var(--border);
 }
 
 .btn-outline-secondary:hover {
-  background-color: var(--surface-elevated);
+  background-color: var(--surface-soft);
   color: var(--ink);
-  border-color: var(--border-accent);
+  border-color: var(--border);
 }
 
-.btn-accent {
-  background-color: var(--neon-green);
-  border-color: var(--neon-green);
-  color: var(--primary);
-}
-
-.btn-accent:hover {
-  background-color: var(--neon-green-hover);
-  border-color: var(--neon-green-hover);
-  box-shadow: var(--shadow-neon);
-}
-
-/* ----------------------------
-   Badges
-   ---------------------------- */
+/* ------------------------------------------------------------
+   Badges & status indicators
+   ------------------------------------------------------------ */
 .badge {
   font-weight: 500;
-  border-radius: var(--radius-full);
+  border-radius: 999px;
   padding: 0.35em 0.75em;
 }
 
 .badge-primary {
-  background-color: var(--neon-green);
-  color: var(--primary);
+  background-color: var(--accent-primary);
+  color: white;
 }
 
 .badge-secondary {
-  background-color: var(--electric-purple);
-  color: var(--ink);
-}
-
-.badge-accent {
-  background-color: var(--neon-green);
-  color: var(--primary);
+  background-color: var(--surface-soft);
+  color: var(--muted);
 }
 
 .badge-success {
-  background-color: var(--success);
-  color: var(--primary);
+  background-color: rgba(47, 107, 63, 0.15);
+  color: var(--status-success);
 }
 
 .badge-warning {
-  background-color: var(--warning);
-  color: var(--primary);
+  background-color: rgba(201, 162, 39, 0.15);
+  color: var(--status-warning);
 }
 
-/* ----------------------------
-   Hero refinements
-   ---------------------------- */
-section:first-of-type {
-  padding-top: 4.5rem;
+.badge-danger {
+  background-color: rgba(139, 44, 44, 0.15);
+  color: var(--status-error);
 }
 
-.hero-section {
-  background: linear-gradient(135deg, var(--surface) 0%, var(--surface-soft) 50%, var(--surface-alt) 100%);
-  position: relative;
-  overflow: hidden;
+/* ------------------------------------------------------------
+   Tables (Schedule & Results)
+   ------------------------------------------------------------ */
+.table {
+  border-color: var(--border);
 }
 
-.hero-section::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, var(--neon-green) 0%, var(--electric-purple) 100%);
-  box-shadow: 0 0 20px var(--neon-green-glow);
+.table th {
+  font-weight: 500;
+  font-size: 0.85rem;
+  color: var(--muted);
+  background-color: var(--surface-soft);
+  border-bottom-width: 2px;
 }
 
-.ratio.bg-secondary-subtle {
-  background-color: var(--border-light);
+.table td {
+  font-size: 0.9rem;
+  vertical-align: middle;
 }
 
-/* Hero image container */
-.hero-image-container {
-  position: relative;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  box-shadow: var(--shadow-lg);
-  border: 1px solid var(--border);
+.table-hover tbody tr:hover {
+  background-color: var(--surface-soft);
 }
 
-.hero-image-container::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.3) 0%, transparent 50%);
-  z-index: 1;
-  pointer-events: none;
-}
-
-/* ----------------------------
-   Footer
-   ---------------------------- */
-footer {
-  background-color: var(--primary);
-  color: var(--ink-muted);
-  border-top: 1px solid var(--border);
-}
-
-footer a {
-  color: var(--ink-muted);
-}
-
-footer a:hover {
-  color: var(--neon-green);
-}
-
-.footer-logo {
-  font-weight: 700;
-  font-size: 1.25rem;
-  letter-spacing: -0.02em;
-  color: var(--ink);
-}
-
-/* ----------------------------
-   Lists
-   ---------------------------- */
-ul {
-  padding-left: 1.1rem;
-}
-
-ul li {
-  margin-bottom: 0.4rem;
-}
-
-/* Custom bullet points */
-ul li::marker {
-  color: var(--neon-green);
-}
-
-/* ----------------------------
-   Forms (future-safe)
-   ---------------------------- */
+/* ------------------------------------------------------------
+   Forms
+   ------------------------------------------------------------ */
 .form-label {
   font-size: 0.85rem;
   font-weight: 500;
@@ -491,14 +361,11 @@ ul li::marker {
 .form-control {
   border-radius: var(--radius-md);
   border-color: var(--border);
-  background-color: var(--surface-soft);
-  color: var(--ink);
 }
 
 .form-control:focus {
-  box-shadow: 0 0 0 3px var(--neon-green-glow);
-  border-color: var(--neon-green);
-  background-color: var(--surface-soft);
+  box-shadow: none;
+  border-color: var(--accent-primary);
 }
 
 textarea.form-control {
@@ -509,46 +376,20 @@ textarea.form-control {
   max-width: 100%;
 }
 
-/* ----------------------------
-   Schedule & results tables
-   ---------------------------- */
-.table {
-  border-color: var(--border);
-  color: var(--ink);
+/* ------------------------------------------------------------
+   Images
+   ------------------------------------------------------------ */
+img {
+  display: block;
+  max-width: 100%;
 }
 
-.table th {
-  font-weight: 500;
-  font-size: 0.85rem;
-  color: var(--muted);
-  background-color: var(--surface-soft);
-  border-bottom-width: 2px;
-  border-bottom-color: var(--border-accent);
-}
-
-.table td {
-  font-size: 0.9rem;
-  vertical-align: middle;
-  border-bottom-color: var(--border-light);
-}
-
-.table-hover tbody tr:hover {
-  background-color: var(--surface-elevated);
-}
-
-/* ----------------------------
-   Image handling
-   ---------------------------- */
 .object-fit-cover {
   object-fit: cover;
 }
 
-img {
-  display: block;
-}
-
 .ratio {
-  background-color: var(--surface-elevated);
+  background-color: #e9ecef;
 }
 
 /* Placeholder images */
@@ -556,36 +397,57 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, var(--surface-soft) 0%, var(--surface-elevated) 100%);
+  background: linear-gradient(135deg, var(--surface-soft) 0%, var(--border) 100%);
   color: var(--muted);
   font-size: 0.875rem;
 }
 
-/* ----------------------------
-   Section highlights
-   ---------------------------- */
-.section-primary {
-  background-color: var(--primary);
-  color: var(--ink);
+/* ------------------------------------------------------------
+   Footer
+   ------------------------------------------------------------ */
+footer {
+  background-color: var(--brand-charcoal);
+  color: rgba(255, 255, 255, 0.85);
+  border-top: none;
 }
 
-.section-secondary {
-  background-color: var(--surface-elevated);
-  color: var(--ink);
+footer a {
+  color: rgba(255, 255, 255, 0.7);
 }
 
-.section-accent {
-  background-color: var(--neon-green);
-  color: var(--primary);
+footer a:hover {
+  color: white;
 }
 
-/* Stats/Numbers highlight */
+.footer-logo {
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: white;
+}
+
+/* ------------------------------------------------------------
+   Lists
+   ------------------------------------------------------------ */
+ul {
+  padding-left: 1.1rem;
+}
+
+ul li {
+  margin-bottom: 0.4rem;
+}
+
+ul li::marker {
+  color: var(--accent-primary);
+}
+
+/* ------------------------------------------------------------
+   Stats/Numbers highlight
+   ------------------------------------------------------------ */
 .stat-number {
   font-size: 2.5rem;
   font-weight: 700;
-  color: var(--neon-green);
+  color: var(--accent-primary);
   line-height: 1;
-  text-shadow: 0 0 20px var(--neon-green-glow);
 }
 
 .stat-label {
@@ -595,9 +457,9 @@ img {
   letter-spacing: 0.05em;
 }
 
-/* ----------------------------
+/* ------------------------------------------------------------
    Utility helpers
-   ---------------------------- */
+   ------------------------------------------------------------ */
 .max-w-md {
   max-width: 36rem;
 }
@@ -611,97 +473,21 @@ img {
   margin-right: auto;
 }
 
-.text-gradient {
-  background: linear-gradient(135deg, var(--neon-green) 0%, var(--electric-purple) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
 .border-primary {
-  border-color: var(--neon-green) !important;
+  border-color: var(--accent-primary) !important;
 }
 
-.border-accent {
-  border-color: var(--electric-purple) !important;
+.border-secondary {
+  border-color: var(--accent-secondary) !important;
 }
 
-/* ----------------------------
-   Neon-themed elements
-   ---------------------------- */
-.neon-border-green {
-  border: 2px solid var(--neon-green);
-  box-shadow: 0 0 15px var(--neon-green-glow);
-}
-
-.neon-border-purple {
-  border: 2px solid var(--electric-purple);
-  box-shadow: 0 0 15px var(--electric-purple-glow);
-}
-
-/* Lightning bolt accents */
-.lightning-accent {
-  position: relative;
-  padding-left: 1.5rem;
-}
-
-.lightning-accent::before {
-  content: '⚡';
-  position: absolute;
-  left: 0;
-  color: var(--neon-green);
-  font-size: 1rem;
-}
-
-/* Track outline accent */
-.track-accent {
-  position: relative;
-  padding-left: 1rem;
-}
-
-.track-accent::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 4px;
-  background: linear-gradient(to bottom, var(--neon-green), var(--electric-purple));
-  border-radius: var(--radius-full);
-  box-shadow: 0 0 10px var(--neon-green-glow);
-}
-
-/* ----------------------------
+/* ------------------------------------------------------------
    Animations
-   ---------------------------- */
-@keyframes neon-pulse {
-  0%, 100% {
-    opacity: 1;
-    box-shadow: 0 0 20px var(--neon-green-glow);
-  }
-  50% {
-    opacity: 0.8;
-    box-shadow: 0 0 30px var(--neon-green-glow);
-  }
-}
-
-@keyframes neon-flicker {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.9;
-  }
-}
-
-.animate-neon-pulse {
-  animation: neon-pulse 2s ease-in-out infinite;
-}
-
-@keyframes slide-up {
+   ------------------------------------------------------------ */
+@keyframes fade-in {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(10px);
   }
   to {
     opacity: 1;
@@ -709,38 +495,37 @@ img {
   }
 }
 
-.animate-slide-up {
-  animation: slide-up 0.5s ease-out;
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out;
 }
 
-/* ----------------------------
+/* ------------------------------------------------------------
    Responsive adjustments
-   ---------------------------- */
+   ------------------------------------------------------------ */
 @media (max-width: 768px) {
-  .hero-section {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-  }
-  
   .stat-number {
     font-size: 2rem;
   }
+
+  .navbar-brand img {
+    height: 36px;
+  }
 }
 
-/* ----------------------------
+/* ------------------------------------------------------------
    Print styles
-   ---------------------------- */
+   ------------------------------------------------------------ */
 @media print {
   .navbar,
   footer {
     display: none;
   }
-  
+
   body {
     color: black;
     background: white;
   }
-  
+
   a {
     color: black;
   }

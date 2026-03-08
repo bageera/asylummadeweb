@@ -1,37 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
-  <defs>
-    <filter id="neonGlow" x="-30%" y="-30%" width="160%" height="160%">
-      <feGaussianBlur stdDeviation="2" result="blur"/>
-      <feMerge>
-        <feMergeNode in="blur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
-  </defs>
+  <!-- Background -->
+  <circle cx="32" cy="32" r="30" fill="#4b2e83"/>
   
-  <!-- Black background circle -->
-  <circle cx="32" cy="32" r="30" fill="#000"/>
-  
-  <!-- Outer glow ring -->
-  <circle cx="32" cy="32" r="28" fill="none" stroke="#7FFF00" stroke-width="2" filter="url(#neonGlow)"/>
+  <!-- Outer ring -->
+  <circle cx="32" cy="32" r="28" fill="none" stroke="white" stroke-width="2" opacity="0.3"/>
   
   <!-- Track lanes -->
-  <circle cx="32" cy="32" r="24" fill="none" stroke="#8A2BE2" stroke-width="1" opacity="0.5"/>
-  <circle cx="32" cy="32" r="20" fill="none" stroke="#7FFF00" stroke-width="1" opacity="0.3"/>
-  <circle cx="32" cy="32" r="16" fill="none" stroke="#8A2BE2" stroke-width="1" opacity="0.2"/>
+  <circle cx="32" cy="32" r="24" fill="none" stroke="#5b7f2b" stroke-width="1" opacity="0.5"/>
+  <circle cx="32" cy="32" r="20" fill="none" stroke="white" stroke-width="1" opacity="0.2"/>
+  <circle cx="32" cy="32" r="16" fill="none" stroke="#5b7f2b" stroke-width="1" opacity="0.3"/>
   
   <!-- Inner field -->
-  <circle cx="32" cy="32" r="12" fill="#111"/>
+  <circle cx="32" cy="32" r="12" fill="#5b7f2b" opacity="0.2"/>
   
-  <!-- Lightning bolt runner -->
-  <g transform="translate(22, 16)" filter="url(#neonGlow)">
-    <polygon points="4,0 12,0 8,8 16,8 0,24 6,12 0,12" fill="#7FFF00"/>
-    <!-- Secondary bolt -->
-    <polygon points="12,4 16,4 14,8 18,8 8,18 10,10 6,10" fill="#8A2BE2" opacity="0.8"/>
-  </g>
-  
-  <!-- Speed lines -->
-  <line x1="8" y1="28" x2="4" y2="28" stroke="#7FFF00" stroke-width="1.5" opacity="0.6"/>
-  <line x1="10" y1="35" x2="6" y2="35" stroke="#8A2BE2" stroke-width="1" opacity="0.5"/>
-  <line x1="8" y1="42" x2="4" y2="42" stroke="#7FFF00" stroke-width="1" opacity="0.4"/>
+  <!-- Letter A -->
+  <text x="32" y="40" text-anchor="middle" font-family="system-ui, sans-serif" font-size="24" font-weight="700" fill="white">A</text>
 </svg>
