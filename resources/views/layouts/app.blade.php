@@ -34,8 +34,20 @@
 
   {{-- Site polish --}}
   <link rel="stylesheet" href="{{ asset('assets/css/polish.css') }}">
+  
+  {{-- Google Fonts --}}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+  </style>
 
   @stack('head')
+  @stack('styles')
 </head>
 <body>
 

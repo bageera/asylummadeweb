@@ -3,7 +3,7 @@
 
     {{-- Brand --}}
     <a class="navbar-brand d-flex align-items-center" href="/">
-      <img src="/assets/images/icons/logo.svg" alt="Asylum Made Track & Field" height="36" class="me-2">
+      <img src="/assets/images/icons/logo.png" alt="Asylum Made Track & Field" height="48" class="me-2" style="filter: drop-shadow(0 0 10px rgba(127, 255, 0, 0.3));">
     </a>
 
     {{-- Mobile toggle --}}
