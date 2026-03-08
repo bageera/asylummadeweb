@@ -26,30 +26,46 @@ View upcoming track & field meets, events, and practice schedules for Asylum Mad
               <div class="d-flex justify-content-between align-items-start mb-3">
                 <div>
                   <h3 class="h5 fw-bold mb-1">{{ $event->name }}</h3>
-                  <p class="text-muted small mb-0">{{ $event->location ?? 'Riverview, FL' }}</p>
+                  <p class="text-muted small mb-0">{{ $event->track_condition ?? 'Riverview, FL' }}</p>
                 </div>
-                @if($event->status === 'upcoming')
-                <span class="badge" style="background-color: var(--accent-secondary); color: white;">Upcoming</span>
-                @elseif($event->status === 'active')
-                <span class="badge" style="background-color: var(--accent-primary); color: white;">Active</span>
+                @if($event->status === 'registration_open')
+                <span class="badge bg-success">Registration Open</span>
+                @elseif($event->status === 'scheduled')
+                <span class="badge bg-primary">Scheduled</span>
+                @elseif($event->status === 'completed')
+                <span class="badge bg-secondary">Completed</span>
+                @elseif($event->status === 'cancelled')
+                <span class="badge bg-danger">Cancelled</span>
                 @else
-                <span class="badge" style="background-color: var(--muted); color: white;">Completed</span>
+                <span class="badge bg-secondary">{{ ucfirst($event->status) }}</span>
                 @endif
               </div>
               <div class="mb-3">
                 <div class="d-flex align-items-center mb-2">
                   <span class="me-2">📅</span>
-                  <span>{{ $event->start_date?->format('M j, Y') ?? 'TBD' }}</span>
+                  <span>{{ $event->event_date?->format('M j, Y') ?? 'TBD' }}</span>
                 </div>
-                @if($event->start_time)
+                @if($event->gates_open_time)
+                <div class="d-flex align-items-center mb-1">
+                  <span class="me-2">🚪</span>
+                  <span class="small">Gates: {{ $event->gates_open_time }}</span>
+                </div>
+                @endif
+                @if($event->practice_start_time)
+                <div class="d-flex align-items-center mb-1">
+                  <span class="me-2">🔧</span>
+                  <span class="small">Practice: {{ $event->practice_start_time }}</span>
+                </div>
+                @endif
+                @if($event->racing_start_time)
                 <div class="d-flex align-items-center">
-                  <span class="me-2">🕐</span>
-                  <span>{{ $event->start_time }}</span>
+                  <span class="me-2">🏁</span>
+                  <span class="small">Racing: {{ $event->racing_start_time }}</span>
                 </div>
                 @endif
               </div>
-              @if($event->description)
-              <p class="text-muted small">{{ Str::limit($event->description, 100) }}</p>
+              @if($event->special_notes)
+              <p class="text-muted small">{{ Str::limit($event->special_notes, 100) }}</p>
               @endif
               <a href="{{ route('events.show', $event->id) }}" class="stretched-link"></a>
             </div>

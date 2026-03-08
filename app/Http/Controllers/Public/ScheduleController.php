@@ -20,7 +20,7 @@ class ScheduleController extends Controller
         
         if ($currentSeason) {
             $events = Event::where('season_id', $currentSeason->id)
-                ->orderBy('start_date')
+                ->orderBy('event_date')
                 ->get();
         }
         
@@ -34,7 +34,7 @@ class ScheduleController extends Controller
     {
         $season = Season::where('slug', $seasonSlug)->firstOrFail();
         $events = Event::where('season_id', $season->id)
-            ->orderBy('start_date')
+            ->orderBy('event_date')
             ->get();
         
         return view('pages.schedule', compact('season', 'events'));
