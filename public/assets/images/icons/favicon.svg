@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Circle background -->
+  <circle cx="32" cy="32" r="30" fill="#1E3A5F"/>
+  
+  <!-- Checkered flag pattern -->
+  <g transform="translate(14, 16)">
+    <rect x="0" y="0" width="8" height="8" fill="#FFFBF5"/>
+    <rect x="16" y="0" width="8" height="8" fill="#FFFBF5"/>
+    <rect x="8" y="8" width="8" height="8" fill="#FFFBF5"/>
+    <rect x="24" y="8" width="8" height="8" fill="#FFFBF5"/>
+    <rect x="0" y="16" width="8" height="8" fill="#FFFBF5"/>
+    <rect x="16" y="16" width="8" height="8" fill="#FFFBF5"/>
+    <rect x="8" y="24" width="8" height="8" fill="#FFFBF5"/>
+    <rect x="24" y="24" width="8" height="8" fill="#FFFBF5"/>
+    <!-- Solid squares -->
+    <rect x="8" y="0" width="8" height="8" fill="#D45500"/>
+    <rect x="24" y="0" width="8" height="8" fill="#D45500"/>
+    <rect x="0" y="8" width="8" height="8" fill="#D45500"/>
+    <rect x="16" y="8" width="8" height="8" fill="#D45500"/>
+    <rect x="8" y="16" width="8" height="8" fill="#D45500"/>
+    <rect x="24" y="16" width="8" height="8" fill="#D45500"/>
+    <rect x="0" y="24" width="8" height="8" fill="#D45500"/>
+    <rect x="16" y="24" width="8" height="8" fill="#D45500"/>
+  </g>
+</svg>

@@ -81,6 +81,42 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Updated `package.json` with ESLint + Prettier
 - Updated `.gitignore` with security scan outputs
 
+### UI Design - 2026-03-07
+
+#### Color Scheme (Warm Racing Palette)
+- **Primary**: Sunset Orange (`#D45500`) - Energy, Florida warmth
+- **Secondary**: Deep Navy (`#1E3A5F`) - Professional, trust
+- **Accent**: Amber/Gold (`#F59E0B`) - Highlights, achievements
+- **Surfaces**: Warm whites and creams (`#FFFBF5`, `#FEF7ED`)
+- **Status**: Racing-inspired colors for success, warning, danger
+
+#### Visual Elements
+- Racing stripe gradient accents
+- Warm gradient hero sections
+- Card hover animations
+- Speed line decorations
+- Track oval imagery
+- Checkered flag patterns
+
+#### Typography
+- Improved letter-spacing for headings
+- Text gradient utility for emphasis
+- Stat number styling for metrics
+
+#### Hero Images (SVG)
+- `/assets/images/hero/track-sunset.svg` - Main hero image
+- `/assets/images/hero/racing-action.svg` - Action shot
+- `/assets/images/hero/pit-area.svg` - Pit scene
+
+#### Icons (SVG)
+- `/assets/images/icons/logo.svg` - Brand logo
+- `/assets/images/icons/favicon.svg` - Favicon
+
+#### Page Updates
+- **Home page**: Complete redesign with stats, classes, CTAs
+- **Navigation**: Updated with new color scheme and logo
+- **Footer**: Dark navy theme with racing stripe accent
+
 ### Database Schema
 
 ```

@@ -1,9 +1,10 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom sticky-top">
+<nav class="navbar navbar-expand-lg sticky-top" style="background-color: var(--surface); border-bottom: 1px solid var(--border-light);">
   <div class="container">
 
     {{-- Brand --}}
-    <a class="navbar-brand fw-semibold" href="/">
-      asylummadetrack
+    <a class="navbar-brand d-flex align-items-center" href="/">
+      <img src="/assets/images/icons/logo.svg" alt="Asylum Made Track" height="36" class="me-2">
+      <span class="fw-bold" style="color: var(--secondary);">asylummadespan class="text-primary">track</span></span>
     </a>
 
     {{-- Mobile toggle --}}
@@ -24,19 +25,23 @@
       <ul class="navbar-nav ms-auto gap-lg-3 align-items-lg-center">
 
         <li class="nav-item">
-          <a class="nav-link" href="/schedule">Schedule &amp; Results</a>
+          <a class="nav-link" href="/schedule">Schedule</a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="/rules">Rules &amp; Classes</a>
+          <a class="nav-link" href="/results">Results</a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="/services">League Operations</a>
+          <a class="nav-link" href="/standings">Standings</a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="/registration">Registration</a>
+          <a class="nav-link" href="/rules">Rules</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/teams">Teams</a>
         </li>
 
         <li class="nav-item">
@@ -44,8 +49,8 @@
         </li>
 
         <li class="nav-item ms-lg-2">
-          <a class="btn btn-dark btn-sm px-3" href="/contact">
-            Contact
+          <a class="btn btn-primary btn-sm px-3" href="/registration">
+            Register
           </a>
         </li>
 

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
 
-  <title>@yield('title', 'asylummadetrack')</title>
+  <title>@yield('title', 'Asylum Made Track — Riverview, Florida')</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -15,6 +15,14 @@
   <meta name="geo.placename" content="Riverview, Florida">
   <meta name="geo.position" content="27.8661;-82.3265">
   <meta name="ICBM" content="27.8661, -82.3265">
+
+  {{-- Theme colors --}}
+  <meta name="theme-color" content="#D45500">
+  <meta name="msapplication-TileColor" content="#1E3A5F">
+
+  {{-- Favicon --}}
+  <link rel="icon" type="image/svg+xml" href="/assets/images/icons/favicon.svg">
+  <link rel="apple-touch-icon" href="/assets/images/icons/favicon.svg">
 
   {{-- Bootstrap 5 (CDN, HTML5-native) --}}
   <link
