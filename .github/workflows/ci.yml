@@ -25,8 +25,10 @@ jobs:
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv
           coverage: none
 
-      - name: Install Composer
-        run: composer install --prefer-dist --no-progress --no-scripts
+      - name: Install Dependencies
+        run: |
+          composer update --prefer-dist --no-progress --no-scripts --with-all-dependencies
+          composer install --prefer-dist --no-progress --no-scripts
 
       - name: Run Laravel Pint (Code Style)
         run: vendor/bin/pint --test
@@ -53,8 +55,10 @@ jobs:
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv
           coverage: none
 
-      - name: Install Composer
-        run: composer install --prefer-dist --no-progress --no-scripts
+      - name: Install Dependencies
+        run: |
+          composer update --prefer-dist --no-progress --no-scripts --with-all-dependencies
+          composer install --prefer-dist --no-progress --no-scripts
 
       # Check for known vulnerabilities in dependencies
       - name: Run Composer Audit
@@ -63,9 +67,7 @@ jobs:
 
       # Check for security issues in code
       - name: Run Psalm (Security Analysis)
-        run: |
-          composer require --dev vimeo/psalm psalm/plugin-laravel --no-interaction
-          vendor/bin/psalm --config=psalm.xml --show-info=true
+        run: vendor/bin/psalm --config=psalm.xml --show-info=true
         continue-on-error: true
 
       # Check for hardcoded secrets and sensitive data
@@ -178,8 +180,10 @@ jobs:
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, mysql, pdo_mysql, bcmath, soap, intl, gd, exif, iconv
           coverage: xdebug
 
-      - name: Install Composer
-        run: composer install --prefer-dist --no-progress --no-scripts
+      - name: Install Dependencies
+        run: |
+          composer update --prefer-dist --no-progress --no-scripts --with-all-dependencies
+          composer install --prefer-dist --no-progress --no-scripts
 
       - name: Setup .env
         run: |
