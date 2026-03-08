@@ -19,13 +19,15 @@ class DashboardController extends Controller
         $stats = [
             'teams' => Team::count(),
             'athletes' => User::where('role', 'driver')->count(),
-            'events' => Event::where('status', 'upcoming')->count(),
+            'events' => Event::where('status', 'scheduled')->orWhere('status', 'registration_open')->count(),
             'seasons' => Season::where('is_current', true)->count(),
         ];
 
         $recentTeams = Team::orderBy('created_at', 'desc')->take(5)->get();
-        $upcomingEvents = Event::where('status', 'upcoming')
-            ->orderBy('start_date')
+        
+        $upcomingEvents = Event::whereIn('status', ['scheduled', 'registration_open'])
+            ->where('event_date', '>=', now())
+            ->orderBy('event_date')
             ->take(5)
             ->get();
 

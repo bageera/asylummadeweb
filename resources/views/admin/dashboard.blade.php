@@ -103,7 +103,7 @@
             <div class="d-flex align-items-center py-2 {{ $loop->last ? '' : 'border-bottom' }}">
               <div class="flex-grow-1">
                 <div class="fw-semibold">{{ $event->name }}</div>
-                <div class="text-muted small">{{ $event->start_date?->format('M j, Y') ?? 'TBD' }}</div>
+                <div class="text-muted small">{{ $event->event_date?->format('M j, Y') ?? 'TBD' }}</div>
               </div>
               <a href="{{ route('admin.events.edit', $event->id) }}" class="btn btn-sm btn-outline-secondary">Edit</a>
             </div>

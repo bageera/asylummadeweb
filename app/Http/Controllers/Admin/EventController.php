@@ -16,7 +16,7 @@ class EventController extends Controller
     public function index()
     {
         $events = Event::with('season', 'vehicleClasses')
-            ->orderBy('start_date')
+            ->orderBy('event_date')
             ->paginate(20);
         
         return view('admin.events.index', compact('events'));
@@ -42,12 +42,17 @@ class EventController extends Controller
             'name' => 'required|string|max:255',
             'slug' => 'required|string|max:255|unique:events',
             'season_id' => 'required|exists:seasons,id',
-            'start_date' => 'required|date',
-            'end_date' => 'nullable|date|after_or_equal:start_date',
-            'start_time' => 'nullable|string',
-            'location' => 'nullable|string|max:255',
-            'description' => 'nullable|string',
-            'admission_fee' => 'nullable|numeric|min:0',
+            'event_date' => 'required|date',
+            'gates_open_time' => 'nullable|string',
+            'practice_start_time' => 'nullable|string',
+            'racing_start_time' => 'nullable|string',
+            'admission_general' => 'nullable|numeric|min:0',
+            'admission_pit' => 'nullable|numeric|min:0',
+            'admission_kids' => 'nullable|numeric|min:0',
+            'track_condition' => 'nullable|string',
+            'weather_notes' => 'nullable|string',
+            'special_notes' => 'nullable|string',
+            'status' => 'required|string',
             'vehicle_classes' => 'array',
             'vehicle_classes.*' => 'exists:vehicle_classes,id',
         ]);
@@ -83,12 +88,16 @@ class EventController extends Controller
             'name' => 'required|string|max:255',
             'slug' => 'required|string|max:255|unique:events,slug,' . $event->id,
             'season_id' => 'required|exists:seasons,id',
-            'start_date' => 'required|date',
-            'end_date' => 'nullable|date|after_or_equal:start_date',
-            'start_time' => 'nullable|string',
-            'location' => 'nullable|string|max:255',
-            'description' => 'nullable|string',
-            'admission_fee' => 'nullable|numeric|min:0',
+            'event_date' => 'required|date',
+            'gates_open_time' => 'nullable|string',
+            'practice_start_time' => 'nullable|string',
+            'racing_start_time' => 'nullable|string',
+            'admission_general' => 'nullable|numeric|min:0',
+            'admission_pit' => 'nullable|numeric|min:0',
+            'admission_kids' => 'nullable|numeric|min:0',
+            'track_condition' => 'nullable|string',
+            'weather_notes' => 'nullable|string',
+            'special_notes' => 'nullable|string',
             'status' => 'required|string',
             'vehicle_classes' => 'array',
             'vehicle_classes.*' => 'exists:vehicle_classes,id',
