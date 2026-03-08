@@ -41,23 +41,28 @@
                 </div>
 
                 <div class="col-md-6">
-                  <label for="contact_name" class="form-label">Contact Name</label>
-                  <input type="text" id="contact_name" name="contact_name" class="form-control" value="{{ old('contact_name') }}">
+                  <label for="established_year" class="form-label">Established Year</label>
+                  <input type="number" id="established_year" name="established_year" class="form-control" value="{{ old('established_year') }}" min="1900" max="{{ date('Y') }}">
                 </div>
 
                 <div class="col-md-6">
-                  <label for="contact_email" class="form-label">Contact Email</label>
-                  <input type="email" id="contact_email" name="contact_email" class="form-control" value="{{ old('contact_email') }}">
+                  <label for="primary_contact_email" class="form-label">Contact Email</label>
+                  <input type="email" id="primary_contact_email" name="primary_contact_email" class="form-control" value="{{ old('primary_contact_email') }}">
+                </div>
+
+                <div class="col-md-6">
+                  <label for="primary_contact_phone" class="form-label">Contact Phone</label>
+                  <input type="tel" id="primary_contact_phone" name="primary_contact_phone" class="form-control" value="{{ old('primary_contact_phone') }}">
                 </div>
 
                 <div class="col-12">
-                  <label for="contact_phone" class="form-label">Contact Phone</label>
-                  <input type="tel" id="contact_phone" name="contact_phone" class="form-control" value="{{ old('contact_phone') }}">
+                  <label for="bio" class="form-label">Team Bio</label>
+                  <textarea id="bio" name="bio" class="form-control" rows="3">{{ old('bio') }}</textarea>
                 </div>
 
                 <div class="col-12">
-                  <label for="logo" class="form-label">Team Logo</label>
-                  <input type="file" id="logo" name="logo" class="form-control" accept="image/*">
+                  <label for="logo_path" class="form-label">Team Logo</label>
+                  <input type="file" id="logo_path" name="logo_path" class="form-control" accept="image/*">
                 </div>
               </div>
 

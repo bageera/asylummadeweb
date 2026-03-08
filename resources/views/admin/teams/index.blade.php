@@ -40,8 +40,8 @@
                 </td>
                 <td>{{ $team->city }}{{ $team->city && $team->state ? ', ' : '' }}{{ $team->state }}</td>
                 <td>
-                  @if($team->contact_email)
-                  <a href="mailto:{{ $team->contact_email }}">{{ $team->contact_email }}</a>
+                  @if($team->primary_contact_email)
+                  <a href="mailto:{{ $team->primary_contact_email }}">{{ $team->primary_contact_email }}</a>
                   @else
                     <span class="text-muted">—</span>
                   @endif

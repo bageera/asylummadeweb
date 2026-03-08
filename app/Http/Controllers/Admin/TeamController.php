@@ -36,14 +36,15 @@ class TeamController extends Controller
             'slug' => 'required|string|max:255|unique:teams',
             'city' => 'nullable|string|max:255',
             'state' => 'nullable|string|max:255',
-            'contact_name' => 'nullable|string|max:255',
-            'contact_email' => 'nullable|email|max:255',
-            'contact_phone' => 'nullable|string|max:255',
-            'logo' => 'nullable|image|max:2048',
+            'established_year' => 'nullable|integer|min:1900|max:' . date('Y'),
+            'primary_contact_email' => 'nullable|email|max:255',
+            'primary_contact_phone' => 'nullable|string|max:255',
+            'bio' => 'nullable|string',
+            'logo_path' => 'nullable|image|max:2048',
         ]);
 
-        if ($request->hasFile('logo')) {
-            $validated['logo'] = $request->file('logo')->store('teams', 'public');
+        if ($request->hasFile('logo_path')) {
+            $validated['logo_path'] = $request->file('logo_path')->store('teams', 'public');
         }
 
         $team = Team::create($validated);
@@ -80,15 +81,16 @@ class TeamController extends Controller
             'slug' => 'required|string|max:255|unique:teams,slug,' . $team->id,
             'city' => 'nullable|string|max:255',
             'state' => 'nullable|string|max:255',
-            'contact_name' => 'nullable|string|max:255',
-            'contact_email' => 'nullable|email|max:255',
-            'contact_phone' => 'nullable|string|max:255',
-            'logo' => 'nullable|image|max:2048',
+            'established_year' => 'nullable|integer|min:1900|max:' . date('Y'),
+            'primary_contact_email' => 'nullable|email|max:255',
+            'primary_contact_phone' => 'nullable|string|max:255',
+            'bio' => 'nullable|string',
+            'logo_path' => 'nullable|image|max:2048',
             'is_active' => 'boolean',
         ]);
 
-        if ($request->hasFile('logo')) {
-            $validated['logo'] = $request->file('logo')->store('teams', 'public');
+        if ($request->hasFile('logo_path')) {
+            $validated['logo_path'] = $request->file('logo_path')->store('teams', 'public');
         }
 
         $team->update($validated);
