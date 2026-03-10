@@ -8,7 +8,7 @@
   <div class="container">
     <h1 class="h3 fw-semibold mb-3">Contact</h1>
     <p class="text-muted max-w-lg">
-      Share a brief overview of what you’re working on. You’ll receive a response
+      Share a brief overview of what you're working on. You'll receive a response
       outlining next steps and expected timing.
     </p>
   </div>
@@ -53,13 +53,33 @@
       </div>
 
       <div class="col-lg-5">
-        <div class="card shadow-sm">
+        <div class="card shadow-sm mb-4">
           <div class="card-body">
             <h2 class="h6 fw-semibold">What happens next</h2>
             <p class="text-muted mt-3 mb-0">
-              You’ll receive a response with clarification questions or a proposed
+              You'll receive a response with clarification questions or a proposed
               next step. There is no automated follow-up or sales pressure.
             </p>
+          </div>
+        </div>
+
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h2 class="h6 fw-semibold">Direct Contact</h2>
+            <ul class="list-unstyled mt-3 mb-0">
+              <li class="mb-2">
+                <strong>General Inquiries:</strong><br>
+                <a href="mailto:info@asylummadetrack.com" class="text-decoration-none">info@asylummadetrack.com</a>
+              </li>
+              <li class="mb-2">
+                <strong>Registration:</strong><br>
+                <a href="mailto:register@asylummadetrack.com" class="text-decoration-none">register@asylummadetrack.com</a>
+              </li>
+              <li>
+                <strong>Support:</strong><br>
+                <a href="mailto:support@asylummadetrack.com" class="text-decoration-none">support@asylummadetrack.com</a>
+              </li>
+            </ul>
           </div>
         </div>
       </div>

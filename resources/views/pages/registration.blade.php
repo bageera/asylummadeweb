@@ -182,7 +182,21 @@ Register to compete in track & field events at Asylum Made Track in Riverview, F
           </div>
           <div class="card-body">
             <p class="text-muted mb-3">Contact the league if you have questions about registration or eligibility.</p>
-            <a href="{{ route('contact') }}" class="btn btn-outline-secondary w-100">Contact Us</a>
+            <ul class="list-unstyled mb-3">
+              <li class="mb-2">
+                <strong>Registration:</strong><br>
+                <a href="mailto:register@asylummadetrack.com" class="text-decoration-none">register@asylummadetrack.com</a>
+              </li>
+              <li class="mb-2">
+                <strong>General Info:</strong><br>
+                <a href="mailto:info@asylummadetrack.com" class="text-decoration-none">info@asylummadetrack.com</a>
+              </li>
+              <li>
+                <strong>Support:</strong><br>
+                <a href="mailto:support@asylummadetrack.com" class="text-decoration-none">support@asylummadetrack.com</a>
+              </li>
+            </ul>
+            <a href="{{ route('contact') }}" class="btn btn-outline-secondary w-100">Contact Form</a>
           </div>
         </div>
       </div>
