@@ -43,11 +43,48 @@
           <a class="nav-link" href="/about">About</a>
         </li>
 
-        <li class="nav-item ms-lg-2">
-          <a class="btn btn-primary btn-sm px-3" href="/registration">
-            Register
-          </a>
-        </li>
+        @auth
+          {{-- Authenticated user menu --}}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi bi-person-circle me-1"></i>
+              {{ auth()->user()->name }}
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              @if(auth()->user()->canAccessAdmin())
+                <li><a class="dropdown-item" href="{{ route('dashboard') }}"><i class="bi bi-speedometer2 me-2"></i>Dashboard</a></li>
+                <li><a class="dropdown-item" href="{{ route('admin.dashboard') }}"><i class="bi bi-gear me-2"></i>Admin Panel</a></li>
+                <li><hr class="dropdown-divider"></li>
+              @else
+                <li><a class="dropdown-item" href="{{ route('dashboard') }}"><i class="bi bi-speedometer2 me-2"></i>Dashboard</a></li>
+                <li><a class="dropdown-item" href="{{ route('profile.index') }}"><i class="bi bi-person me-2"></i>Profile Settings</a></li>
+                <li><hr class="dropdown-divider"></li>
+              @endif
+              <li><a class="dropdown-item" href="{{ route('profile.index') }}"><i class="bi bi-person-gear me-2"></i>Profile Settings</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li>
+                <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                  @csrf
+                  <button type="submit" class="dropdown-item text-danger">
+                    <i class="bi bi-box-arrow-right me-2"></i>Logout
+                  </button>
+                </form>
+              </li>
+            </ul>
+          </li>
+        @else
+          {{-- Guest: Login and Register buttons --}}
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('login') }}">
+              <i class="bi bi-box-arrow-in-right me-1"></i>Login
+            </a>
+          </li>
+          <li class="nav-item ms-lg-2">
+            <a class="btn btn-primary btn-sm px-3" href="{{ route('registration') }}">
+              Register
+            </a>
+          </li>
+        @endauth
 
       </ul>
     </div>

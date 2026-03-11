@@ -66,6 +66,11 @@ class User extends Authenticatable
         return $this->belongsTo(Driver::class, 'user_id');
     }
 
+    public function registrations(): HasMany
+    {
+        return $this->hasMany(Registration::class, 'user_id');
+    }
+
     // ============================================================
     // Role Helpers
     // ============================================================

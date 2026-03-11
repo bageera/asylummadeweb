@@ -8,12 +8,12 @@ use App\Http\Controllers\Team\TeamController;
 | Team Portal Routes
 |--------------------------------------------------------------------------
 |
-| Routes for team managers to manage their team, athletes, and registrations.
-| Requires team_manager role.
+| Routes for team owners to manage their team, athletes, and registrations.
+| Requires team_owner or admin role.
 |
 */
 
-Route::middleware(['auth', 'role:team_manager'])->prefix('team')->name('team.')->group(function () {
+Route::middleware(['auth', 'role:team_owner,admin'])->prefix('team')->name('team.')->group(function () {
 
     // Dashboard
     Route::get('/', [TeamController::class, 'index'])->name('dashboard');
