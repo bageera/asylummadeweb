@@ -7,6 +7,7 @@ use App\Http\Controllers\Public\ResultsController;
 use App\Http\Controllers\Public\StandingsController;
 use App\Http\Controllers\Public\TeamController as PublicTeamController;
 use App\Http\Controllers\Public\DriverController as PublicDriverController;
+use App\Http\Controllers\Public\SponsorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,3 +44,7 @@ Route::get('/teams/{team}', [PublicTeamController::class, 'show'])->name('teams.
 // Drivers
 Route::get('/drivers', [PublicDriverController::class, 'index'])->name('drivers');
 Route::get('/drivers/{driver}', [PublicDriverController::class, 'show'])->name('drivers.show');
+
+// Sponsors
+Route::get('/sponsors', [SponsorController::class, 'index'])->name('sponsors');
+Route::get('/sponsors/event/{event}', [SponsorController::class, 'event'])->name('sponsors.event');

@@ -83,6 +83,14 @@ class Event extends Model
         return $this->hasMany(Result::class);
     }
 
+    public function sponsors(): BelongsToMany
+    {
+        return $this->belongsToMany(Sponsor::class, 'event_sponsor')
+            ->withPivot('sponsorship_type')
+            ->withTimestamps()
+            ->orderByPivot('sponsorship_type');
+    }
+
     // ============================================================
     // Scopes
     // ============================================================

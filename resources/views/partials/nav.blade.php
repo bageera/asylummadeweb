@@ -36,6 +36,10 @@
         </li>
 
         <li class="nav-item">
+          <a class="nav-link" href="/sponsors">Sponsors</a>
+        </li>
+
+        <li class="nav-item">
           <a class="nav-link" href="/events">Events</a>
         </li>
 
