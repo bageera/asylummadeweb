@@ -7,6 +7,125 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added - 2026-03-11
+
+#### User Authentication & Profile
+- **Social Login Fields**: `google_id`, `facebook_id`, `avatar` columns for OAuth integration
+- **Profile Fields**: `date_of_birth`, `address`, `city`, `state`, `zip` for complete user profiles
+- **Profile Settings Page**: `/profile` route for users to update their information
+- **User Dashboard**: `/dashboard` landing page after login with role badges and quick access
+- **Navigation**: Login/logout button in navbar, role-based admin links
+
+#### Role System Update
+- **New Role**: `super_user` added above `admin` in hierarchy
+- **Updated Hierarchy**: `super_user` > `admin` > `official` > `team_owner` > `driver`
+- **Role Badges**: Color-coded badges in dashboard (Super User=danger, Admin=primary, Official=info, Team Owner=success, Driver=secondary)
+
+#### Admin CRUD Complete
+- **Events**: Full CRUD with vehicle class selection, timing, admission prices
+- **Seasons**: Full CRUD for season management
+- **Teams**: Full CRUD with team profile management
+- **Users**: Full CRUD with role assignment
+- **Sponsors**: Full CRUD with tier system (Bronze/Silver/Gold/Platinum) and event sponsorship
+- **Waiver Templates**: Full CRUD for liability waivers with versioning and signed waiver tracking
+
+#### Sponsor Management System
+- **Sponsor Model**: Tier-based sponsorship (1-4: Bronze/Platinum)
+- **Event Sponsorship**: Pivot table for event-specific sponsorships
+- **Sponsorship Types**: general, heat, feature, trophy
+- **Admin Views**: Index, create, edit with logo upload support
+
+#### Waiver Management System
+- **WaiverTemplate Model**: Reusable waiver templates with versioning
+- **Waiver Model**: Signed waivers with signature capture, IP tracking, expiry
+- **Features**: Parent signature for minors, validity period, CSV export
+- **Admin Views**: Index, create, edit, signed waivers list
+
+#### Media Storage System
+- **Media Model**: Polymorphic file attachments (`mediable`)
+- **Collections**: profile, logo, gallery, sponsor, document
+- **Features**: Image dimensions metadata, file size tracking, S3/local disk support
+
+#### Payment Integration (Stripe Ready)
+- **Payment Model**: Payment records with Stripe integration hooks
+- **PaymentMethod Model**: Saved payment methods for users
+- **Refund Model**: Payment refund tracking
+- **Status Flow**: pending → processing → succeeded/failed/refunded
+- **Polymorphic Payable**: Payments can be attached to any model
+
+#### Notification System
+- **NotificationTemplate Model**: Email/notification templates with variables
+- **NotificationSetting Model**: User preferences per channel/type
+- **Notification Model**: Database notifications with channel support
+
+#### Public Routes
+- **Schedule**: Event schedule with registration status
+- **Results**: Race results by event and class
+- **Standings**: Championship standings
+
+#### Database Migrations
+- `create_sponsors_table` — Sponsor management with tier system
+- `create_waivers_table` — Waiver templates + signed waivers
+- `create_media_table` — Polymorphic media attachments
+- `create_payments_table` — Payment + PaymentMethod + Refund
+- `add_social_fields_to_users` — Social login + profile fields
+- `create_notifications_table` — Notification templates + settings
+- `add_super_user_role` — Super user role migration
+
+#### Testing
+- **Unit Tests**: SponsorTest, PaymentTest, WaiverTest, MediaTest
+- **Feature Tests**: AdminSponsorTest (authorization + CRUD)
+- **Factories**: SponsorFactory, WaiverTemplateFactory with states
+
+### Changed - 2026-03-11
+
+#### Role Migration Fix
+- Removed duplicate `create_registrations_table` migration
+- Fixed `User::registrations()` relationship to use `driver_id` instead of `user_id`
+
+#### Styling Updates
+- **Profile Page**: Converted from Tailwind CSS to Bootstrap 5
+- **Dashboard Page**: Updated to Bootstrap 5 with site-consistent styling
+- **Admin Views**: All admin CRUD views use Bootstrap 5 components
+
+#### Admin Routes
+- Updated team routes from `team_manager` to `team_owner` role
+
+### Database Schema (Updated)
+
+```
+users (extended with social login + profile fields)
+├── teams (owner_id → users)
+│   └── drivers (team_id → teams)
+│       └── registrations (driver_id → drivers)
+│           └── results (registration_id → registrations)
+│
+├── payment_methods (user_id → users)
+├── payments (user_id → users, payable polymorphic)
+│   └── refunds (payment_id → payments)
+├── media (mediable polymorphic)
+├── waivers (user_id → users, waiver_template_id → templates)
+│   └── waiver_templates
+├── notification_settings (user_id → users)
+└── notifications (notifiable polymorphic)
+
+sponsors (tier-based)
+└── event_sponsor (pivot: event_id, sponsor_id)
+
+seasons
+└── events (season_id → seasons)
+    ├── event_sponsor (sponsor_id → sponsors)
+    ├── event_classes (event_id, vehicle_class_id)
+    │   └── results (event_id, vehicle_class_id)
+    └── registrations (event_id → events)
+        └── results (registration_id → registrations)
+
+vehicle_classes (standalone)
+└── event_classes (vehicle_class_id → vehicle_classes)
+```
+
+---
+
 ### Added - 2026-03-07
 
 #### Track League Domain Model
@@ -116,22 +235,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Home page**: Complete redesign with stats, classes, CTAs
 - **Navigation**: Updated with new color scheme and logo
 - **Footer**: Dark navy theme with racing stripe accent
-
-### Database Schema
-
-```
-users (extended with role, phone, emergency fields)
-├── teams (owner_id → users)
-│   └── drivers (team_id → teams)
-│       └── registrations (driver_id → drivers)
-│           └── results (registration_id → registrations)
-│
-└── seasons
-    └── events (season_id → seasons)
-        └── event_classes (event_id, vehicle_class_id)
-            └── results (event_id, vehicle_class_id)
-                └── points_standings (season_id, vehicle_class_id, driver_id)
-```
 
 ---
 
