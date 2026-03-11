@@ -34,15 +34,18 @@ class DashboardController extends Controller
             $myTeam = Team::where('owner_id', $user->id)->first();
         }
         
-        // Get user's driver profile (if driver)
+        // Get user's driver profile (if exists)
         $myDriver = $user->driver;
         
-        // Get registration count for user
-        $registrations = $user->registrations()
-            ->with('event')
-            ->orderBy('created_at', 'desc')
-            ->take(5)
-            ->get();
+        // Get registrations through driver profile (if exists)
+        $registrations = collect();
+        if ($myDriver) {
+            $registrations = $myDriver->registrations()
+                ->with('event')
+                ->orderBy('created_at', 'desc')
+                ->take(5)
+                ->get();
+        }
 
         return view('dashboard.index', compact(
             'user',
