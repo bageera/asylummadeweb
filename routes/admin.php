@@ -13,11 +13,11 @@ use App\Http\Controllers\Admin\UserController;
 |--------------------------------------------------------------------------
 |
 | Routes for league administrators and officials.
-| Requires admin or official role.
+| Requires super_user or admin role.
 |
 */
 
-Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
+Route::middleware(['auth', 'role:super_user,admin'])->prefix('admin')->name('admin.')->group(function () {
 
     // Dashboard
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');

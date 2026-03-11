@@ -70,28 +70,82 @@ class User extends Authenticatable
     // Role Helpers
     // ============================================================
 
+    /**
+     * Check if user is a super user (full access to everything).
+     */
+    public function isSuperUser(): bool
+    {
+        return $this->role === 'super_user';
+    }
+
+    /**
+     * Check if user can manage all teams (super_user or admin).
+     */
     public function isAdmin(): bool
     {
-        return $this->role === 'admin';
+        return in_array($this->role, ['super_user', 'admin']);
     }
 
+    /**
+     * Check if user is an official (track official).
+     */
     public function isOfficial(): bool
     {
-        return in_array($this->role, ['admin', 'official']);
+        return in_array($this->role, ['super_user', 'admin', 'official']);
     }
 
-    public function isTeamManager(): bool
+    /**
+     * Check if user owns a team (super_user, admin, or team_owner).
+     */
+    public function isTeamOwner(): bool
     {
-        return in_array($this->role, ['admin', 'team_manager']);
+        return in_array($this->role, ['super_user', 'admin', 'team_owner']);
     }
 
-    public function isDriver(): bool
-    {
-        return in_array($this->role, ['admin', 'driver']);
-    }
-
+    /**
+     * Check if user can manage a specific team.
+     */
     public function canManageTeam(Team $team): bool
     {
-        return $this->isAdmin() || $team->owner_id === $this->id;
+        return $this->isSuperUser() || 
+               ($this->isAdmin() && $this->isTeamOwner()) || 
+               $team->owner_id === $this->id;
+    }
+
+    /**
+     * Check if user can access admin panel.
+     */
+    public function canAccessAdmin(): bool
+    {
+        return in_array($this->role, ['super_user', 'admin']);
+    }
+
+    /**
+     * Get human-readable role name.
+     */
+    public function getRoleNameAttribute(): string
+    {
+        return match($this->role) {
+            'super_user' => 'Super User',
+            'admin' => 'Administrator',
+            'official' => 'Track Official',
+            'team_owner' => 'Team Owner',
+            'driver' => 'Driver',
+            default => 'Unknown',
+        };
+    }
+
+    /**
+     * Get all available roles.
+     */
+    public static function getRoles(): array
+    {
+        return [
+            'super_user' => 'Super User',
+            'admin' => 'Administrator',
+            'official' => 'Track Official',
+            'team_owner' => 'Team Owner',
+            'driver' => 'Driver',
+        ];
     }
 }

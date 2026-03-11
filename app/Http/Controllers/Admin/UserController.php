@@ -15,20 +15,16 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $query = User::with('team');
+        $query = User::with('teams');
         
         if ($request->role) {
             $query->where('role', $request->role);
         }
         
-        if ($request->team_id) {
-            $query->where('team_id', $request->team_id);
-        }
-        
         $users = $query->orderBy('name')->paginate(20);
-        $teams = Team::orderBy('name')->get();
+        $roles = User::getRoles();
         
-        return view('admin.users.index', compact('users', 'teams'));
+        return view('admin.users.index', compact('users', 'roles'));
     }
 
     /**
@@ -36,10 +32,10 @@ class UserController extends Controller
      */
     public function create()
     {
+        $roles = User::getRoles();
         $teams = Team::orderBy('name')->get();
-        $roles = ['admin', 'official', 'team_manager', 'driver'];
         
-        return view('admin.users.create', compact('teams', 'roles'));
+        return view('admin.users.create', compact('roles', 'teams'));
     }
 
     /**
@@ -51,8 +47,10 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|string|min:8|confirmed',
-            'role' => 'required|in:admin,official,team_manager,driver',
-            'team_id' => 'nullable|exists:teams,id',
+            'role' => 'required|in:super_user,admin,official,team_owner,driver',
+            'phone' => 'nullable|string|max:20',
+            'emergency_contact' => 'nullable|string|max:100',
+            'emergency_phone' => 'nullable|string|max:20',
         ]);
 
         $validated['password'] = Hash::make($validated['password']);
@@ -69,10 +67,10 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
+        $roles = User::getRoles();
         $teams = Team::orderBy('name')->get();
-        $roles = ['admin', 'official', 'team_manager', 'driver'];
         
-        return view('admin.users.edit', compact('user', 'teams', 'roles'));
+        return view('admin.users.edit', compact('user', 'roles', 'teams'));
     }
 
     /**
@@ -83,8 +81,10 @@ class UserController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,' . $user->id,
-            'role' => 'required|in:admin,official,team_manager,driver',
-            'team_id' => 'nullable|exists:teams,id',
+            'role' => 'required|in:super_user,admin,official,team_owner,driver',
+            'phone' => 'nullable|string|max:20',
+            'emergency_contact' => 'nullable|string|max:100',
+            'emergency_phone' => 'nullable|string|max:20',
             'password' => 'nullable|string|min:8|confirmed',
         ]);
 

@@ -13,17 +13,30 @@ class AdminUserSeeder extends Seeder
      */
     public function run(): void
     {
+        // Create admin as super_user (for system administration)
         User::updateOrCreate(
             ['email' => 'admin@asylummadetrack.com'],
             [
                 'name' => 'Admin',
-                'password' => Hash::make('changeme'),
-                'role' => 'admin',
+                'password' => Hash::make('AsylumAdmin2024!'),
+                'role' => 'super_user',
                 'email_verified_at' => now(),
             ]
         );
 
-        $this->command->info('Admin user created: admin@asylummadetrack.com');
-        $this->command->warn('Password: changeme (change immediately!)');
+        // Create Chester as super_user (track owner)
+        User::updateOrCreate(
+            ['email' => 'chester@asylummadetrack.com'],
+            [
+                'name' => 'Chester',
+                'password' => Hash::make('AsylumTrack2024!'),
+                'role' => 'super_user',
+                'email_verified_at' => now(),
+            ]
+        );
+
+        $this->command->info('Super users created:');
+        $this->command->line('  - admin@asylummadetrack.com (Password: AsylumAdmin2024!)');
+        $this->command->line('  - chester@asylummadetrack.com (Password: AsylumTrack2024!)');
     }
 }

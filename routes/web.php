@@ -55,6 +55,13 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::post('logout', [\App\Http\Controllers\Auth\AuthenticatedSessionController::class, 'destroy'])->name('logout');
+    
+    // Profile routes (all authenticated users)
+    Route::prefix('profile')->name('profile.')->group(function () {
+        Route::get('/', [\App\Http\Controllers\ProfileController::class, 'index'])->name('index');
+        Route::put('/', [\App\Http\Controllers\ProfileController::class, 'update'])->name('update');
+        Route::put('/password', [\App\Http\Controllers\ProfileController::class, 'updatePassword'])->name('password');
+    });
 });
 
 // --------------------------------------------------

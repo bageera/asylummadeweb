@@ -39,21 +39,38 @@
               <div class="mb-3">
                 <label for="role" class="form-label">Role *</label>
                 <select id="role" name="role" class="form-select" required>
-                  <option value="driver" {{ old('role') === 'driver' ? 'selected' : '' }}>Athlete</option>
-                  <option value="team_manager" {{ old('role') === 'team_manager' ? 'selected' : '' }}>Team Manager</option>
-                  <option value="official" {{ old('role') === 'official' ? 'selected' : '' }}>Official</option>
-                  <option value="admin" {{ old('role') === 'admin' ? 'selected' : '' }}>Admin</option>
+                  <optgroup label="Administration">
+                    <option value="super_user" {{ old('role') === 'super_user' ? 'selected' : '' }}>Super User (Full Access)</option>
+                    <option value="admin" {{ old('role') === 'admin' ? 'selected' : '' }}>Administrator</option>
+                    <option value="official" {{ old('role') === 'official' ? 'selected' : '' }}>Track Official</option>
+                  </optgroup>
+                  <optgroup label="Teams">
+                    <option value="team_owner" {{ old('role') === 'team_owner' ? 'selected' : '' }}>Team Owner</option>
+                    <option value="driver" {{ old('role') === 'driver' ? 'selected' : '' }}>Driver</option>
+                  </optgroup>
                 </select>
+                <div class="form-text">
+                  <strong>Super User:</strong> Full system access<br>
+                  <strong>Administrator:</strong> Manage seasons, events, teams, users<br>
+                  <strong>Track Official:</strong> Manage events and results<br>
+                  <strong>Team Owner:</strong> Manage team and drivers<br>
+                  <strong>Driver:</strong> Register for events, view results
+                </div>
               </div>
 
               <div class="mb-3">
-                <label for="team_id" class="form-label">Team</label>
-                <select id="team_id" name="team_id" class="form-select">
-                  <option value="">No Team</option>
-                  @foreach($teams as $team)
-                  <option value="{{ $team->id }}" {{ old('team_id') == $team->id ? 'selected' : '' }}>{{ $team->name }}</option>
-                  @endforeach
-                </select>
+                <label for="phone" class="form-label">Phone Number</label>
+                <input type="tel" id="phone" name="phone" class="form-control" value="{{ old('phone') }}">
+              </div>
+
+              <div class="mb-3">
+                <label for="emergency_contact" class="form-label">Emergency Contact</label>
+                <input type="text" id="emergency_contact" name="emergency_contact" class="form-control" value="{{ old('emergency_contact') }}">
+              </div>
+
+              <div class="mb-3">
+                <label for="emergency_phone" class="form-label">Emergency Phone</label>
+                <input type="tel" id="emergency_phone" name="emergency_phone" class="form-control" value="{{ old('emergency_phone') }}">
               </div>
 
               <div class="d-flex gap-2">
