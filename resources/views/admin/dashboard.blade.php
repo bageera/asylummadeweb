@@ -88,7 +88,7 @@
         <div class="card border-0 shadow-sm h-100">
           <div class="card-body">
             <h4 class="h6 fw-bold text-success"><i class="bi bi-people-fill me-2"></i>Teams</h4>
-            <p class="text-muted small mb-3">Manage team profiles, rosters, and registrations.</p>
+            <p class="text-muted small mb-3">Manage team profiles and rosters.</p>
             <div class="d-flex flex-wrap gap-1">
               <a href="{{ route('admin.teams.index') }}" class="btn btn-sm btn-outline-success">All Teams</a>
               <a href="{{ route('admin.teams.create') }}" class="btn btn-sm btn-success">+ Add Team</a>
@@ -97,15 +97,31 @@
         </div>
       </div>
       
-      {{-- Users --}}
+      {{-- Athletes (Drivers) --}}
       <div class="col-md-6 col-lg-3 mb-3">
         <div class="card border-0 shadow-sm h-100">
           <div class="card-body">
-            <h4 class="h6 fw-bold text-info"><i class="bi bi-person-gear me-2"></i>Users</h4>
+            <h4 class="h6 fw-bold text-info"><i class="bi bi-person-badge me-2"></i>Athletes</h4>
+            <p class="text-muted small mb-3">Manage drivers, license status, medical certs.</p>
+            <div class="d-flex flex-wrap gap-1">
+              <a href="{{ route('admin.drivers.index') }}" class="btn btn-sm btn-outline-info">All Athletes</a>
+              <a href="{{ route('admin.drivers.create') }}" class="btn btn-sm btn-info">+ Add Athlete</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {{-- Users Management --}}
+    <div class="row mb-4">
+      <div class="col-md-6 mb-3">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body">
+            <h4 class="h6 fw-bold"><i class="bi bi-person-gear me-2"></i>Users</h4>
             <p class="text-muted small mb-3">Manage user accounts, roles, and permissions.</p>
             <div class="d-flex flex-wrap gap-1">
-              <a href="{{ route('admin.users.index') }}" class="btn btn-sm btn-outline-info">All Users</a>
-              <a href="{{ route('admin.users.create') }}" class="btn btn-sm btn-info">+ Add User</a>
+              <a href="{{ route('admin.users.index') }}" class="btn btn-sm btn-outline-secondary">All Users</a>
+              <a href="{{ route('admin.users.create') }}" class="btn btn-sm btn-outline-primary">+ Add User</a>
             </div>
           </div>
         </div>

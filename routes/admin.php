@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\SeasonController;
 use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\TeamController;
+use App\Http\Controllers\Admin\DriverController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\SponsorController;
 use App\Http\Controllers\Admin\WaiverController;
@@ -32,6 +33,9 @@ Route::middleware(['auth', 'role:super_user,admin'])->prefix('admin')->name('adm
 
     // Teams CRUD
     Route::resource('teams', TeamController::class);
+
+    // Drivers (Athletes) CRUD
+    Route::resource('drivers', DriverController::class);
 
     // Users CRUD
     Route::resource('users', UserController::class)->except(['show']);

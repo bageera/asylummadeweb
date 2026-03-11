@@ -82,7 +82,7 @@
         <div class="card border-0 shadow-sm">
           <div class="card-header bg-white d-flex justify-content-between align-items-center">
             <h3 class="h6 fw-bold mb-0">Athletes ({{ $team->drivers->count() }})</h3>
-            <span class="badge bg-primary">{{ $team->drivers->count() }}</span>
+            <a href="{{ route('admin.drivers.create', ['team_id' => $team->id]) }}" class="btn btn-sm btn-primary">+ Add Athlete</a>
           </div>
           <div class="card-body p-0">
             @if($team->drivers->count() > 0)
@@ -92,18 +92,30 @@
                   <tr>
                     <th>Name</th>
                     <th>Status</th>
+                    <th class="text-end">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
                   @foreach($team->drivers as $driver)
                   <tr>
-                    <td>{{ $driver->name }}</td>
+                    <td>
+                      <a href="{{ route('admin.drivers.show', $driver->id) }}">
+                        @if($driver->nickname)
+                          "{{ $driver->nickname }}" {{ $driver->last_name }}
+                        @else
+                          {{ $driver->full_name }}
+                        @endif
+                      </a>
+                    </td>
                     <td>
                       @if($driver->is_active ?? true)
                       <span class="badge bg-success">Active</span>
                       @else
                       <span class="badge bg-secondary">Inactive</span>
                       @endif
+                    </td>
+                    <td class="text-end">
+                      <a href="{{ route('admin.drivers.edit', $driver->id) }}" class="btn btn-sm btn-outline-secondary">Edit</a>
                     </td>
                   </tr>
                   @endforeach
@@ -113,6 +125,8 @@
             @else
             <div class="p-4 text-center text-muted">
               No athletes assigned to this team yet.
+              <br>
+              <a href="{{ route('admin.drivers.create', ['team_id' => $team->id]) }}" class="btn btn-primary btn-sm mt-2">+ Add Athlete</a>
             </div>
             @endif
           </div>
