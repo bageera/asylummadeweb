@@ -6,6 +6,8 @@ use App\Http\Controllers\Admin\SeasonController;
 use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\TeamController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\SponsorController;
+use App\Http\Controllers\Admin\WaiverController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,5 +35,13 @@ Route::middleware(['auth', 'role:super_user,admin'])->prefix('admin')->name('adm
 
     // Users CRUD
     Route::resource('users', UserController::class)->except(['show']);
+
+    // Sponsors CRUD
+    Route::resource('sponsors', SponsorController::class)->except(['show']);
+
+    // Waivers CRUD
+    Route::resource('waivers', WaiverController::class)->except(['show']);
+    Route::get('waivers/{waiver}/signed', [WaiverController::class, 'signedWaivers'])->name('waivers.signed');
+    Route::get('waivers/{waiver}/export', [WaiverController::class, 'export'])->name('waivers.export');
 
 });
