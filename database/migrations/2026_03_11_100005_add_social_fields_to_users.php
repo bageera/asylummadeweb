@@ -12,19 +12,27 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
+            // Social login fields
             $table->string('google_id')->nullable()->unique();
             $table->string('facebook_id')->nullable()->unique();
             $table->string('avatar')->nullable();
-            $table->string('phone')->nullable()->change();
-            $table->string('emergency_contact')->nullable();
-            $table->string('emergency_phone')->nullable();
-            $table->date('date_of_birth')->nullable();
-            $table->string('address')->nullable();
-            $table->string('city')->nullable();
-            $table->string('state', 2)->nullable();
-            $table->string('zip', 10)->nullable();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->rememberToken();
+            
+            // Additional profile fields (only if not already added)
+            if (!Schema::hasColumn('users', 'date_of_birth')) {
+                $table->date('date_of_birth')->nullable();
+            }
+            if (!Schema::hasColumn('users', 'address')) {
+                $table->string('address')->nullable();
+            }
+            if (!Schema::hasColumn('users', 'city')) {
+                $table->string('city')->nullable();
+            }
+            if (!Schema::hasColumn('users', 'state')) {
+                $table->string('state', 2)->nullable();
+            }
+            if (!Schema::hasColumn('users', 'zip')) {
+                $table->string('zip', 10)->nullable();
+            }
         });
     }
 
@@ -38,15 +46,11 @@ return new class extends Migration
                 'google_id',
                 'facebook_id',
                 'avatar',
-                'emergency_contact',
-                'emergency_phone',
                 'date_of_birth',
                 'address',
                 'city',
                 'state',
                 'zip',
-                'email_verified_at',
-                'remember_token'
             ]);
         });
     }
