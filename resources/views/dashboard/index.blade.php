@@ -10,19 +10,19 @@
     <div class="row mb-4">
       <div class="col">
         <h1 class="h3 fw-bold">Welcome, {{ $user->name }}!</h1>
-        <p class="text-muted">
+        <div class="mt-2">
           @if($user->isSuperUser())
-            <span class="badge bg-danger">Super User</span>
+            <span class="badge bg-danger fs-6"><i class="bi bi-shield-check me-1"></i>Super User</span>
           @elseif($user->isAdmin())
-            <span class="badge bg-primary">Administrator</span>
+            <span class="badge bg-primary fs-6"><i class="bi bi-gear me-1"></i>Administrator</span>
           @elseif($user->role === 'official')
-            <span class="badge bg-info">Track Official</span>
+            <span class="badge bg-info fs-6"><i class="bi bi-flag me-1"></i>Track Official</span>
           @elseif($user->role === 'team_owner')
-            <span class="badge bg-success">Team Owner</span>
+            <span class="badge bg-success fs-6"><i class="bi bi-people me-1"></i>Team Owner</span>
           @else
-            <span class="badge bg-secondary">Driver</span>
+            <span class="badge bg-secondary fs-6"><i class="bi bi-person me-1"></i>Driver</span>
           @endif
-        </p>
+        </div>
       </div>
       <div class="col-auto">
         <a href="{{ route('profile.index') }}" class="btn btn-outline-secondary">
@@ -34,7 +34,7 @@
     @if($user->canAccessAdmin())
     {{-- Admin Quick Access --}}
     <div class="row mb-4">
-      <div class="col">
+      <div class="col-12">
         <div class="card border-0 shadow-sm bg-light">
           <div class="card-body">
             <h3 class="h5 fw-bold mb-3"><i class="bi bi-gear me-2"></i>Admin Quick Access</h3>
@@ -47,6 +47,9 @@
               </a>
               <a href="{{ route('admin.events.index') }}" class="btn btn-outline-secondary">
                 <i class="bi bi-calendar-event me-1"></i> Manage Events
+              </a>
+              <a href="{{ route('admin.seasons.index') }}" class="btn btn-outline-secondary">
+                <i class="bi bi-calendar3 me-1"></i> Manage Seasons
               </a>
               <a href="{{ route('admin.teams.index') }}" class="btn btn-outline-secondary">
                 <i class="bi bi-people-fill me-1"></i> Manage Teams
@@ -133,9 +136,9 @@
           <div class="card-header bg-white">
             <h3 class="h5 fw-bold mb-0"><i class="bi bi-card-checklist me-2"></i>My Registrations</h3>
           </div>
-          <div class="card-body">
+          <div class="card-body p-0">
             <div class="table-responsive">
-              <table class="table table-hover mb-0">
+              <table class="table mb-0">
                 <thead>
                   <tr>
                     <th>Event</th>
