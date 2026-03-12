@@ -21,7 +21,8 @@ class StandingsController extends Controller
         
         if ($currentSeason) {
             $standings = PointsStanding::where('season_id', $currentSeason->id)
-                ->orderBy('points', 'desc')
+                ->with(['driver', 'vehicleClass'])
+                ->orderBy('adjusted_points', 'desc')
                 ->get()
                 ->groupBy('vehicle_class_id');
         }
@@ -36,7 +37,8 @@ class StandingsController extends Controller
     {
         $season = Season::where('slug', $seasonSlug)->firstOrFail();
         $standings = PointsStanding::where('season_id', $season->id)
-            ->orderBy('points', 'desc')
+            ->with(['driver', 'vehicleClass'])
+            ->orderBy('adjusted_points', 'desc')
             ->get()
             ->groupBy('vehicle_class_id');
         
@@ -53,7 +55,8 @@ class StandingsController extends Controller
         
         $standings = PointsStanding::where('season_id', $season->id)
             ->where('vehicle_class_id', $vehicleClass->id)
-            ->orderBy('points', 'desc')
+            ->with('driver')
+            ->orderBy('adjusted_points', 'desc')
             ->get();
         
         return view('pages.standings', compact('season', 'vehicleClass', 'standings'));
