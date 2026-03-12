@@ -91,6 +91,47 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 #### Admin Routes
 - Updated team routes from `team_manager` to `team_owner` role
 
+#### Bug Fixes - 2026-03-11
+- **StandingsController**: Fixed `orderBy('points')` to `orderBy('adjusted_points')` — column was incorrectly named
+- **Social Fields Migration**: Added column existence checks to prevent duplicate column errors
+
+### Added - 2026-03-11 (Evening Session)
+
+#### Driver (Athlete) Management
+- **DriverController**: Full CRUD for athlete management in admin panel
+- **Driver Views**: index, create, edit, show with license/medical tracking
+- **Driver Factory**: Test data factory for Driver model
+- **Team Integration**: Athletes table on team detail view with "Add Athlete" button
+
+#### Admin Navigation
+- **Admin Sidebar**: Consistent navigation across all admin pages
+- **Sidebar Sections**: Dashboard, League Management, Business Operations, Administration
+- **Quick Actions**: One-click buttons for Add Event, Add Team, Add Athlete
+- **Active State Highlighting**: Current section highlighted in sidebar
+- **Count Badges**: Item counts displayed in sidebar navigation
+
+#### Admin Layout
+- **layouts/admin.blade.php**: Wrapper layout with sidebar for admin pages
+- **Responsive Design**: Sidebar collapses on mobile devices
+
+#### Super User Accounts Migration
+- **Migration**: `2026_03_11_200000_create_super_users.php`
+- **Accounts Created**:
+  - `admin@asylummadetrack.com` (super_user)
+  - `chester@asylummadetrack.com` (super_user)
+- **Auto-creation**: Runs on deployment to ensure admin access
+
+#### Test Coverage Expansion
+- **AdminSeasonControllerTest**: 7 tests (CRUD, validation, role checks)
+- **AdminEventControllerTest**: 7 tests (CRUD, validation, role checks)
+- **AdminTeamControllerTest**: 8 tests (CRUD, show, validation, role checks)
+- **AdminDriverControllerTest**: 9 tests (CRUD, user linking, validation)
+- **AdminUserControllerTest**: 8 tests (CRUD, role changes, validation)
+- **AdminWaiverControllerTest**: 8 tests (CRUD, signed waivers, validation)
+- **PointsStandingTest**: Unit tests for model relationships and helpers
+- **StandingsControllerTest**: Feature tests for public standings routes
+- **Factories**: EventFactory, SeasonFactory, VehicleClassFactory, TeamFactory, DriverFactory
+
 ### Database Schema (Updated)
 
 ```
