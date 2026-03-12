@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\DriverController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\SponsorController;
 use App\Http\Controllers\Admin\WaiverController;
+use App\Http\Controllers\Admin\RegistrationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,5 +48,15 @@ Route::middleware(['auth', 'role:super_user,admin'])->prefix('admin')->name('adm
     Route::resource('waivers', WaiverController::class)->except(['show']);
     Route::get('waivers/{waiver}/signed', [WaiverController::class, 'signedWaivers'])->name('waivers.signed');
     Route::get('waivers/{waiver}/export', [WaiverController::class, 'export'])->name('waivers.export');
+
+    // Registrations CRUD
+    Route::resource('registrations', RegistrationController::class)->except(['create', 'store', 'show']);
+    Route::get('registrations/event/{event}', [RegistrationController::class, 'event'])->name('registrations.event');
+    Route::post('registrations/{registration}/approve', [RegistrationController::class, 'approve'])->name('registrations.approve');
+    Route::post('registrations/{registration}/check-in', [RegistrationController::class, 'checkIn'])->name('registrations.check-in');
+    Route::post('registrations/{registration}/withdraw', [RegistrationController::class, 'withdraw'])->name('registrations.withdraw');
+    Route::post('registrations/{registration}/mark-paid', [RegistrationController::class, 'markPaid'])->name('registrations.mark-paid');
+    Route::post('registrations/{registration}/assign-car-number', [RegistrationController::class, 'assignCarNumber'])->name('registrations.assign-car-number');
+    Route::get('registrations/export/{event}', [RegistrationController::class, 'export'])->name('registrations.export');
 
 });

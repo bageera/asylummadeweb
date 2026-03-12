@@ -33,6 +33,12 @@
       <span class="badge bg-info ms-auto">{{ \App\Models\Driver::count() }}</span>
     </a>
     
+    {{-- Registrations --}}
+    <a href="{{ route('admin.registrations.index') }}" class="list-group-item list-group-item-action {{ request()->routeIs('admin.registrations.*') ? 'active' : '' }}">
+      <i class="bi bi-card-checklist me-2"></i> Registrations
+      <span class="badge bg-danger ms-auto">{{ \App\Models\Registration::count() }}</span>
+    </a>
+    
     <div class="list-group-item bg-light fw-bold text-muted small">BUSINESS OPERATIONS</div>
     
     {{-- Sponsors --}}
