@@ -56,7 +56,7 @@ Route::middleware(['auth', 'role:super_user,admin'])->prefix('admin')->name('adm
     Route::post('registrations/{registration}/check-in', [RegistrationController::class, 'checkIn'])->name('registrations.check-in');
     Route::post('registrations/{registration}/withdraw', [RegistrationController::class, 'withdraw'])->name('registrations.withdraw');
     Route::post('registrations/{registration}/mark-paid', [RegistrationController::class, 'markPaid'])->name('registrations.mark-paid');
-    Route::post('registrations/{registration}/assign-car-number', [RegistrationController::class, 'assignCarNumber'])->name('registrations.assign-car-number');
+    Route::post('registrations/{registration}/assign-bib', [RegistrationController::class, 'assignBib'])->name('registrations.assign-bib');
     Route::get('registrations/export/{event}', [RegistrationController::class, 'export'])->name('registrations.export');
 
 });

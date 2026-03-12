@@ -35,7 +35,7 @@
     
     {{-- Registrations --}}
     <a href="{{ route('admin.registrations.index') }}" class="list-group-item list-group-item-action {{ request()->routeIs('admin.registrations.*') ? 'active' : '' }}">
-      <i class="bi bi-card-checklist me-2"></i> Registrations
+      <i class="bi bi-card-checklist me-2"></i> Meet Registrations
       <span class="badge bg-danger ms-auto">{{ \App\Models\Registration::count() }}</span>
     </a>
     

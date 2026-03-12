@@ -36,7 +36,7 @@
               </select>
             </div>
             <div class="col-md-6">
-              <label for="vehicle_class_id" class="form-label">Competition Class *</label>
+              <label for="vehicle_class_id" class="form-label">Event Class *</label>
               <select id="vehicle_class_id" name="vehicle_class_id" class="form-select" required>
                 @foreach($classes as $class)
                 <option value="{{ $class->id }}" {{ $registration->vehicle_class_id == $class->id ? 'selected' : '' }}>
@@ -47,25 +47,25 @@
             </div>
           </div>
 
-          {{-- Driver & Team --}}
-          <h5 class="fw-bold mb-3">Driver & Team</h5>
+          {{-- Athlete & Team --}}
+          <h5 class="fw-bold mb-3">Athlete & Team</h5>
           <div class="row g-3 mb-4">
             <div class="col-md-6">
-              <label for="driver_id" class="form-label">Driver</label>
-              <select id="driver_id" name="driver_id" class="form-select">
-                <option value="">— Select Driver —</option>
-                @foreach($drivers as $driver)
-                <option value="{{ $driver->id }}" {{ $registration->driver_id == $driver->id ? 'selected' : '' }}>
-                  {{ $driver->full_name }} @if($driver->team) ({{ $driver->team->name }}) @endif
+              <label for="athlete_id" class="form-label">Athlete Profile</label>
+              <select id="athlete_id" name="athlete_id" class="form-select">
+                <option value="">— Select Athlete —</option>
+                @foreach($athletes as $athlete)
+                <option value="{{ $athlete->id }}" {{ $registration->athlete_id == $athlete->id ? 'selected' : '' }}>
+                  {{ $athlete->full_name }} @if($athlete->team) ({{ $athlete->team->name }}) @endif
                 </option>
                 @endforeach
               </select>
-              <div class="form-text">Leave blank if not in driver database.</div>
+              <div class="form-text">Link to athlete profile if registered.</div>
             </div>
             <div class="col-md-6">
               <label for="team_id" class="form-label">Team</label>
               <select id="team_id" name="team_id" class="form-select">
-                <option value="">— Independent —</option>
+                <option value="">— Unattached —</option>
                 @foreach($teams as $team)
                 <option value="{{ $team->id }}" {{ $registration->team_id == $team->id ? 'selected' : '' }}>
                   {{ $team->name }}
@@ -75,32 +75,46 @@
             </div>
           </div>
 
-          {{-- Vehicle Information --}}
-          <h5 class="fw-bold mb-3">Vehicle Information</h5>
+          @unless($registration->athlete_id)
+          {{-- Guest Athlete Info --}}
+          <h5 class="fw-bold mb-3">Guest Athlete Info</h5>
           <div class="row g-3 mb-4">
-            <div class="col-md-3">
-              <label for="car_number" class="form-label">Car Number *</label>
-              <input type="number" id="car_number" name="car_number" class="form-control" value="{{ $registration->car_number }}" min="1" max="999" required>
-            </div>
-            <div class="col-md-3">
-              <label for="car_make" class="form-label">Make</label>
-              <input type="text" id="car_make" name="car_make" class="form-control" value="{{ $registration->car_make }}">
-            </div>
-            <div class="col-md-3">
-              <label for="car_model" class="form-label">Model</label>
-              <input type="text" id="car_model" name="car_model" class="form-control" value="{{ $registration->car_model }}">
-            </div>
-            <div class="col-md-3">
-              <label for="car_year" class="form-label">Year</label>
-              <input type="number" id="car_year" name="car_year" class="form-control" value="{{ $registration->car_year }}" min="1900" max="{{ date('Y') + 1 }}">
+            <div class="col-md-6">
+              <label for="first_name" class="form-label">First Name</label>
+              <input type="text" id="first_name" name="first_name" class="form-control" value="{{ $registration->first_name }}">
             </div>
             <div class="col-md-6">
-              <label for="car_color" class="form-label">Color</label>
-              <input type="text" id="car_color" name="car_color" class="form-control" value="{{ $registration->car_color }}">
+              <label for="last_name" class="form-label">Last Name</label>
+              <input type="text" id="last_name" name="last_name" class="form-control" value="{{ $registration->last_name }}">
             </div>
             <div class="col-md-6">
-              <label for="transponder_id" class="form-label">Transponder ID</label>
-              <input type="text" id="transponder_id" name="transponder_id" class="form-control" value="{{ $registration->transponder_id }}">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" id="email" name="email" class="form-control" value="{{ $registration->email }}">
+            </div>
+            <div class="col-md-6">
+              <label for="phone" class="form-label">Phone</label>
+              <input type="tel" id="phone" name="phone" class="form-control" value="{{ $registration->phone }}">
+            </div>
+          </div>
+          @endunless
+
+          {{-- Competition Info --}}
+          <h5 class="fw-bold mb-3">Competition Info</h5>
+          <div class="row g-3 mb-4">
+            <div class="col-md-4">
+              <label for="bib_number" class="form-label">Bib Number</label>
+              <input type="number" id="bib_number" name="bib_number" class="form-control" value="{{ $registration->bib_number }}" min="1" max="9999">
+              <div class="form-text">Assigned by meet officials.</div>
+            </div>
+            <div class="col-md-4">
+              <label for="seed_time" class="form-label">Seed Time</label>
+              <input type="text" id="seed_time" name="seed_time" class="form-control" value="{{ $registration->seed_time }}" placeholder="e.g., 11.24">
+              <div class="form-text">For track events (100m, 200m, etc.)</div>
+            </div>
+            <div class="col-md-4">
+              <label for="seed_distance" class="form-label">Seed Distance</label>
+              <input type="text" id="seed_distance" name="seed_distance" class="form-control" value="{{ $registration->seed_distance }}" placeholder="e.g., 6.45m">
+              <div class="form-text">For field events (long jump, etc.)</div>
             </div>
           </div>
 
@@ -145,8 +159,8 @@
             </div>
             @if($registration->withdrawal_reason)
             <div class="col-12">
-              <label class="form-label">Withdrawal Reason</label>
-              <p class="text-muted">{{ $registration->withdrawal_reason }}</p>
+              <label class="form-label text-muted">Withdrawal Reason</label>
+              <p class="form-control-static">{{ $registration->withdrawal_reason }}</p>
             </div>
             @endif
           </div>
@@ -184,35 +198,39 @@
           @endif
           <dt class="col-5">Status</dt>
           <dd class="col-7"><span class="badge bg-{{ $registration->status_color }}">{{ $registration->status_label }}</span></dd>
+          <dt class="col-5">Bib #</dt>
+          <dd class="col-7">{{ $registration->bib_number ?? '—' }}</dd>
+          <dt class="col-5">Seed</dt>
+          <dd class="col-7">{{ $registration->seed_display }}</dd>
         </dl>
       </div>
     </div>
 
-    @if($registration->driver)
+    @if($registration->athlete)
     <div class="card border-0 shadow-sm mb-4">
       <div class="card-header bg-white">
-        <h5 class="fw-bold mb-0">Driver Info</h5>
+        <h5 class="fw-bold mb-0">Athlete Profile</h5>
       </div>
       <div class="card-body">
         <dl class="row mb-0">
           <dt class="col-5">Name</dt>
-          <dd class="col-7">{{ $registration->driver->full_name }}</dd>
-          @if($registration->driver->hometown)
+          <dd class="col-7">{{ $registration->athlete->full_name }}</dd>
+          @if($registration->athlete->hometown)
           <dt class="col-5">Hometown</dt>
-          <dd class="col-7">{{ $registration->driver->hometown }}</dd>
+          <dd class="col-7">{{ $registration->athlete->hometown }}</dd>
           @endif
-          @if($registration->driver->license_expires)
+          @if($registration->athlete->license_expires)
           <dt class="col-5">License</dt>
           <dd class="col-7">
-            @if($registration->driver->license_valid)
-              <span class="badge bg-success">Valid until {{ $registration->driver->license_expires->format('M Y') }}</span>
+            @if($registration->athlete->license_valid)
+              <span class="badge bg-success">Valid until {{ $registration->athlete->license_expires->format('M Y') }}</span>
             @else
-              <span class="badge bg-danger">Expired {{ $registration->driver->license_expires->format('M Y') }}</span>
+              <span class="badge bg-danger">Expired</span>
             @endif
           </dd>
           @endif
         </dl>
-        <a href="{{ route('admin.drivers.show', $registration->driver) }}" class="btn btn-outline-secondary btn-sm w-100 mt-2">View Driver Profile</a>
+        <a href="{{ route('admin.drivers.show', $registration->athlete) }}" class="btn btn-outline-secondary btn-sm w-100 mt-2">View Profile</a>
       </div>
     </div>
     @endif

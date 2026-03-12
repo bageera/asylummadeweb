@@ -17,11 +17,16 @@ class RegistrationController extends Controller
      */
     public function index(Request $request)
     {
-        $query = Registration::with(['event', 'vehicleClass', 'driver', 'team']);
+        $query = Registration::with(['event', 'eventClass', 'athlete', 'team']);
 
         // Filter by event
         if ($request->filled('event_id')) {
             $query->where('event_id', $request->event_id);
+        }
+
+        // Filter by event class (track/field event)
+        if ($request->filled('class_id')) {
+            $query->where('vehicle_class_id', $request->class_id);
         }
 
         // Filter by status
@@ -36,7 +41,7 @@ class RegistrationController extends Controller
                 $q->where('first_name', 'like', "%{$search}%")
                   ->orWhere('last_name', 'like', "%{$search}%")
                   ->orWhere('email', 'like', "%{$search}%")
-                  ->orWhereHas('driver', function ($dq) use ($search) {
+                  ->orWhereHas('athlete', function ($dq) use ($search) {
                       $dq->where('first_name', 'like', "%{$search}%")
                          ->orWhere('last_name', 'like', "%{$search}%");
                   });
@@ -45,8 +50,9 @@ class RegistrationController extends Controller
 
         $registrations = $query->orderBy('created_at', 'desc')->paginate(25);
         $events = Event::orderBy('event_date', 'desc')->get();
+        $classes = VehicleClass::orderBy('sort_order')->get();
 
-        return view('admin.registrations.index', compact('registrations', 'events'));
+        return view('admin.registrations.index', compact('registrations', 'events', 'classes'));
     }
 
     /**
@@ -54,9 +60,9 @@ class RegistrationController extends Controller
      */
     public function event(Event $event)
     {
-        $registrations = Registration::with(['driver', 'vehicleClass', 'team'])
+        $registrations = Registration::with(['athlete', 'eventClass', 'team'])
             ->where('event_id', $event->id)
-            ->orderBy('car_number')
+            ->orderBy('bib_number')
             ->paginate(50);
 
         return view('admin.registrations.event', compact('event', 'registrations'));
@@ -70,9 +76,9 @@ class RegistrationController extends Controller
         $events = Event::whereIn('status', ['scheduled', 'registration_open', 'completed'])->get();
         $classes = VehicleClass::orderBy('sort_order')->get();
         $teams = Team::where('is_active', true)->orderBy('name')->get();
-        $drivers = Driver::with('team')->active()->alphabetical()->get();
+        $athletes = Driver::with('team')->active()->alphabetical()->get();
 
-        return view('admin.registrations.edit', compact('registration', 'events', 'classes', 'teams', 'drivers'));
+        return view('admin.registrations.edit', compact('registration', 'events', 'classes', 'teams', 'athletes'));
     }
 
     /**
@@ -81,17 +87,15 @@ class RegistrationController extends Controller
     public function update(Request $request, Registration $registration)
     {
         $validated = $request->validate([
-            'driver_id' => 'nullable|exists:drivers,id',
+            'athlete_id' => 'nullable|exists:drivers,id',
             'team_id' => 'nullable|exists:teams,id',
             'event_id' => 'required|exists:events,id',
             'vehicle_class_id' => 'required|exists:vehicle_classes,id',
-            'car_number' => 'required|integer|min:1|max:999',
-            'car_make' => 'nullable|string|max:50',
-            'car_model' => 'nullable|string|max:50',
-            'car_year' => 'nullable|integer|min:1900|max:' . (date('Y') + 1),
-            'car_color' => 'nullable|string|max:30',
-            'transponder_id' => 'nullable|string|max:50',
-            'status' => 'required|in:pending,registered,checked_in,withdrawn,no_show',
+            'bib_number' => 'nullable|integer|min:1|max:9999',
+            'seed_time' => 'nullable|string|max:20',
+            'seed_distance' => 'nullable|string|max:20',
+            'seed_mark' => 'nullable|string|max:50',
+            'status' => 'required|in:pending,registered,checked_in,withdrawn,no_show,disqualified',
             'paid' => 'boolean',
             'payment_method' => 'nullable|string|max:20',
             'payment_reference' => 'nullable|string|max:100',
@@ -119,12 +123,36 @@ class RegistrationController extends Controller
     }
 
     /**
+     * Assign bib number.
+     */
+    public function assignBib(Request $request, Registration $registration)
+    {
+        $validated = $request->validate([
+            'bib_number' => 'required|integer|min:1|max:9999',
+        ]);
+
+        // Check if number is already taken for this event
+        $exists = Registration::where('event_id', $registration->event_id)
+            ->where('id', '!=', $registration->id)
+            ->where('bib_number', $validated['bib_number'])
+            ->exists();
+
+        if ($exists) {
+            return back()->with('error', "Bib #{$validated['bib_number']} is already assigned for this event.");
+        }
+
+        $registration->update(['bib_number' => $validated['bib_number']]);
+
+        return back()->with('success', "Bib #{$validated['bib_number']} assigned.");
+    }
+
+    /**
      * Mark registration as checked in.
      */
     public function checkIn(Registration $registration)
     {
         if (!in_array($registration->status, ['registered'])) {
-            return back()->with('error', 'Only registered participants can check in.');
+            return back()->with('error', 'Only registered athletes can check in.');
         }
 
         $registration->update([
@@ -133,7 +161,7 @@ class RegistrationController extends Controller
             'check_in_time' => now(),
         ]);
 
-        return back()->with('success', 'Participant checked in.');
+        return back()->with('success', 'Athlete checked in.');
     }
 
     /**
@@ -177,30 +205,6 @@ class RegistrationController extends Controller
     }
 
     /**
-     * Assign car number.
-     */
-    public function assignCarNumber(Request $request, Registration $registration)
-    {
-        $validated = $request->validate([
-            'car_number' => 'required|integer|min:1|max:999',
-        ]);
-
-        // Check if number is already taken for this event
-        $exists = Registration::where('event_id', $registration->event_id)
-            ->where('id', '!=', $registration->id)
-            ->where('car_number', $validated['car_number'])
-            ->exists();
-
-        if ($exists) {
-            return back()->with('error', "Car #{$validated['car_number']} is already assigned for this event.");
-        }
-
-        $registration->update(['car_number' => $validated['car_number']]);
-
-        return back()->with('success', "Car #{$validated['car_number']} assigned.");
-    }
-
-    /**
      * Remove the registration.
      */
     public function destroy(Registration $registration)
@@ -212,13 +216,13 @@ class RegistrationController extends Controller
     }
 
     /**
-     * Export registrations for an event.
+     * Export registrations for an event (CSV).
      */
     public function export(Event $event)
     {
-        $registrations = Registration::with(['driver', 'vehicleClass', 'team'])
+        $registrations = Registration::with(['athlete', 'eventClass', 'team'])
             ->where('event_id', $event->id)
-            ->orderBy('car_number')
+            ->orderBy('bib_number')
             ->get();
 
         $headers = [
@@ -231,12 +235,11 @@ class RegistrationController extends Controller
 
             // Header row
             fputcsv($handle, [
-                'Car #',
-                'Driver Name',
+                'Bib #',
+                'Athlete Name',
                 'Team',
-                'Class',
-                'Car Make/Model',
-                'Transponder',
+                'Event',
+                'Seed Mark',
                 'Status',
                 'Paid',
                 'Checked In',
@@ -244,13 +247,12 @@ class RegistrationController extends Controller
 
             foreach ($registrations as $reg) {
                 fputcsv($handle, [
-                    $reg->car_number,
-                    $reg->driver?->full_name ?? $reg->driver_name ?? 'N/A',
-                    $reg->team?->name ?? 'Independent',
-                    $reg->vehicleClass?->name,
-                    $reg->car_make . ' ' . $reg->car_model,
-                    $reg->transponder_id,
-                    $reg->status,
+                    $reg->bib_number ?? '—',
+                    $reg->athlete_name,
+                    $reg->team?->name ?? 'Unattached',
+                    $reg->eventClass?->name,
+                    $reg->seed_display,
+                    $reg->status_label,
                     $reg->paid ? 'Yes' : 'No',
                     $reg->checked_in ? 'Yes' : 'No',
                 ]);
